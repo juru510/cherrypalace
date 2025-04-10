@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cherry Palace - A personal collection of art, music, and pop culture">
+    <meta name="theme-color" content="#b287d1">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">  <!-- favicon-->    
+    <title>Cherry Palace</title>
+
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <h1>Cherry Palace</h1>
+            </a>
+            <p class="tagline">A curated collection of art, music, and pop culture that moves me</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#featured">Featured</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#blog">Thoughts</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+
+
+    <section id="featured" class="featured-section">
+        <h2>Currently Loving</h2>
+        <div class="featured-content">
+            <div class="featured-item">
+                <img src="/assets/eliot.jpg" alt="Mr. Robot" loading="lazy">
+                <div class="featured-info">
+                    <h3>Mr. Robot</h3>
+                    <p>A masterpiece of modern television</p>
+                </div>
+            </div>
+            <div class="featured-item">
+                <img src="/assets/vapor dbz.jpg" alt="Vaporwave DBZ" loading="lazy">
+                <div class="featured-info">
+                    <h3>Vaporwave Aesthetic</h3>
+                    <p>Nostalgia meets future</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="music-section">
+        <h2>Now Playing</h2>
+        <div class="music-player">
+            <div class="now-playing">
+                <img src="/assets/album-art.jpg" alt="Album Art" class="album-art">
+                <div class="track-info">
+                    <h3>Track Name</h3>
+                    <p>Artist Name</p>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn">⏮</button>
+                <button class="control-btn">▶</button>
+                <button class="control-btn">⏭</button>
+            </div>
+            <div class="playlist">
+                <h3>Recent Favorites</h3>
+                <ul class="track-list">
+                    <li class="track-item">
+                        <span class="track-name">Track 1</span>
+                        <span class="track-artist">Artist 1</span>
+                    </li>
+                    <li class="track-item">
+                        <span class="track-name">Track 2</span>
+                        <span class="track-artist">Artist 2</span>
+                    </li>
+                    <li class="track-item">
+                        <span class="track-name">Track 3</span>
+                        <span class="track-artist">Artist 3</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog-section">
+        <h2>Thoughts & Reviews</h2>
+        <div class="blog-grid">
+            <article class="blog-post">
+                <img src="/assets/eliot.jpg" alt="Mr. Robot" loading="lazy">
+                <div class="blog-content">
+                    <h3>Why Mr. Robot Still Matters</h3>
+                    <p class="post-date">March 10, 2024</p>
+                    <p>A deep dive into the themes and impact of this modern masterpiece...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+            <article class="blog-post">
+                <img src="/assets/vapor dbz.jpg" alt="Vaporwave DBZ" loading="lazy">
+                <div class="blog-content">
+                    <h3>The Rise of Vaporwave Aesthetic</h3>
+                    <p class="post-date">March 8, 2024</p>
+                    <p>Exploring the intersection of nostalgia and futurism in modern art...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About The Palace</h2>
+        <div class="about-content">
+            <p>Welcome to my digital sanctuary, where I collect and share the art, music, and pop culture that inspires me. This is more than just a gallery - it's a reflection of my journey through the creative world.</p>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@singularitey" target="_blank" class="social-link">TikTok</a>
+                <a href="https://music.apple.com/us/playlist/replay-2024/pl.rp-3g58tBvOBDDl" target="_blank" class="social-link">Music</a>
+            </div>
+        </div>
+    </section>
+
+    <main id="gallery" class="image-gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="art">Art</button>
+            <button class="filter-btn" data-filter="video">Video</button>
+            <button class="filter-btn" data-filter="photo">Photo</button>
+        </div>
+        <div class="gallery-grid">
+            <a href="/external/eliot.html" class="gallery-item">
+                <img src="/assets/eliot.jpg" alt="Mr. Robot" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Mr. Robot</span>
+                </div>
+            </a>
+            <div class="gallery-item">
+                <img src="/assets/vapor dbz.jpg" alt="Vaporwave DBZ" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Vaporwave DBZ</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/heat.jpg" alt="Heat" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Heat</span>
+                </div>
+            </div>
+            <a href="/external/jit.html" class="gallery-item">
+                <img src="/assets/jit.jpg" alt="Jit" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Jit</span>
+                </div>
+            </a>
+            <div class="gallery-item">
+                <video src="/assets/damm.mp4" controls autoplay muted loop></video>
+                <div class="gallery-overlay">
+                    <span>Video</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/scott.jpg" alt="Scott" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Scott</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/mem.jpg" alt="Memento" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Memento</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <video src="/assets/silent.mp4" controls autoplay muted loop></video>
+                <div class="gallery-overlay">
+                    <span>Video</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/odst.jpg" alt="ODST" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>ODST</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/slan.jpg" alt="Slan" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Slan</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <video src="/assets/dexter-1979 copy.mp4" controls autoplay muted loop></video>
+                <div class="gallery-overlay">
+                    <span>Video</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/grif.jpg" alt="Griffith" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Griffith</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/vegeta.jpg" alt="Vegeta" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Vegeta</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/yebear.jpg" alt="Ye Bear" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Ye Bear</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/ye copy.jpg" alt="Ye" loading="lazy">
+                <div class="gallery-overlay">
+                    <span>Ye</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <div class="contact-content">
+            <p>Want to share something cool? Have a recommendation?</p>
+            <a href="mailto:your-email@example.com" class="contact-button">Send me a message</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Cherry Palace. All Rights Reserved.</p>
+            <div class="theme-toggle">
+                <button id="theme-toggle" class="theme-btn">🌙</button>
+            </div>
+        </div>
+        <p class="footer-tag">Made with ❤️ in the digital realm</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
