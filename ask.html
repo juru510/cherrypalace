@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CHERRY PALACE - ASK</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cherry-purple': '#d4a3ff',
+                        'cherry-hover': '#2effb9',
+                        'cherry-accent': '#B55FFF',
+                    },
+                    fontFamily: {
+                        'cherry': ['Helvetica', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #d4a3ff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #B55FFF;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2effb9;
+        }
+    </style>
+</head>
+<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
+    <!-- Top Navigation -->
+    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
+        <div class="text-center">
+            <a href="index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <div class="flex justify-center space-x-8 mb-4">
+                <a href="music.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
+                <a href="ask.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ASK</a>
+                <a href="contact.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+                <a href="index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GALLERY</a>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="https://open.spotify.com/artist/your-spotify-id" target="_blank">
+                    <img src="assets/icons/spotify.png" alt="Spotify" class="w-8 h-8 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://instagram.com/your-instagram" target="_blank">
+                    <img src="assets/icons/instagram.png" alt="Instagram" class="w-8 h-8 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://twitter.com/your-twitter" target="_blank">
+                    <img src="assets/icons/twitter.png" alt="Twitter" class="w-8 h-8 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://youtube.com/your-youtube" target="_blank">
+                    <img src="assets/icons/youtube.png" alt="YouTube" class="w-8 h-8 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://soundcloud.com/your-soundcloud" target="_blank">
+                    <img src="assets/icons/soundcloud.png" alt="SoundCloud" class="w-8 h-8 hover:opacity-70 transition-opacity duration-300">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ask Form -->
+    <div class="p-5 pt-[180px] w-[600px] mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold mb-4 text-center">ASK ME A QUESTION</h2>
+            <form id="askForm" class="space-y-4">
+                <div>
+                    <label for="question" class="block text-sm font-bold mb-2">YOUR QUESTION</label>
+                    <textarea id="question" name="question" rows="4" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-cherry-accent" required></textarea>
+                </div>
+                <div>
+                    <label for="name" class="block text-sm font-bold mb-2">YOUR NAME (OPTIONAL)</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-cherry-accent">
+                </div>
+                <button type="submit" class="w-full bg-cherry-accent text-white py-2 px-4 rounded hover:bg-cherry-hover transition-colors duration-300">
+                    SUBMIT
+                </button>
+            </form>
+        </div>
+
+        <!-- Questions Display -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold mb-4 text-center">RECENT QUESTIONS</h3>
+            <div id="questionsList" class="space-y-4">
+                <!-- Questions will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store questions in localStorage
+        const questions = JSON.parse(localStorage.getItem('questions')) || [];
+
+        // Handle form submission
+        document.getElementById('askForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const question = document.getElementById('question').value;
+            const name = document.getElementById('name').value || 'Anonymous';
+            
+            const newQuestion = {
+                text: question,
+                name: name,
+                date: new Date().toLocaleDateString()
+            };
+            
+            questions.unshift(newQuestion);
+            localStorage.setItem('questions', JSON.stringify(questions));
+            
+            // Clear form
+            this.reset();
+            
+            // Update questions display
+            displayQuestions();
+        });
+
+        // Display questions
+        function displayQuestions() {
+            const questionsList = document.getElementById('questionsList');
+            questionsList.innerHTML = '';
+            
+            questions.forEach(q => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'bg-white p-4 rounded-lg shadow';
+                questionElement.innerHTML = `
+                    <p class="text-sm mb-2">${q.text}</p>
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span>${q.name}</span>
+                        <span>${q.date}</span>
+                    </div>
+                `;
+                questionsList.appendChild(questionElement);
+            });
+        }
+
+        // Initial display of questions
+        displayQuestions();
+    </script>
+</body>
+</html>

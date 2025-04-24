@@ -22,15 +22,6 @@
         }
     </script>
     <style>
-        /* Custom cursor */
-        html {
-            cursor: url('assets/icons/cursor.cur'), default;
-        }
-
-        a {
-            cursor: url('assets/icons/cursor-hover.cur'), pointer;
-        }
-
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -54,12 +45,12 @@
     <!-- Top Navigation -->
     <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
         <div class="text-center">
-            <h1 class="text-2xl font-bold mb-4">CHERRY PALACE</h1>
+            <a href="index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
             <div class="flex justify-center space-x-8 mb-4">
                 <a href="/music" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
-                <a href="/shop" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">SHOP</a>
                 <a href="/ask" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ASK</a>
                 <a href="/contact" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+                <a href="videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
             </div>
             <div class="flex justify-center space-x-4">
                 <a href="https://open.spotify.com/artist/your-spotify-id" target="_blank">
@@ -82,8 +73,8 @@
     </div>
 
     <!-- Posts Grid -->
-    <div class="p-5 pt-[180px] w-[1230px] mx-auto">
-        <div class="grid grid-cols-3 gap-8">
+    <div class="p-5 pt-[180px] w-[900px] mx-auto">
+        <div class="grid grid-cols-3 gap-2">
             <!-- Posts will be dynamically loaded here -->
         </div>
     </div>
@@ -104,11 +95,6 @@
                 image: 'assets/cherry palace.jpg',
                 date: '12/11/23',
                 permalink: 'cherry-palace'
-            },
-            {
-                image: 'assets/tiki.webp',
-                date: '12/10/23',
-                permalink: 'tiki'
             },
             {
                 image: 'assets/slan.jpg',
@@ -174,28 +160,27 @@
                 image: 'assets/scott.jpg',
                 date: '02/17/23',
                 permalink: 'scott'
-            },
-            {
-                image: 'assets/dexter-1979 copy.mp4',
-                date: '12/10/23',
-                permalink: 'dexter'
-            },
-            {
-                image: 'assets/damm.mp4',
-                date: '12/10/23',
-                permalink: 'damm'
-            },
-            {
-                image: 'assets/silent.mp4',
-                date: '12/10/23',
-                permalink: 'silent'
             }
         ];
 
         function createPost(post) {
             const isVideo = post.image.endsWith('.mp4');
             const mediaElement = isVideo 
-                ? `<video controls class="w-full h-auto"><source src="${post.image}" type="video/mp4">Your browser does not support the video tag.</video>`
+                ? `<div class="relative group cursor-pointer">
+                    <video class="w-full h-auto" preload="metadata" poster="assets/video-poster.png">
+                        <source src="${post.image}" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all duration-300">
+                        <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">
+                        MP4
+                    </div>
+                </div>`
                 : `<img src="${post.image}" alt="Post" class="w-full h-auto">`;
 
             return `
