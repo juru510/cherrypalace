@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CHERRY PALACE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cherry-purple': '#d4a3ff',
+                        'cherry-hover': '#2effb9',
+                        'cherry-accent': '#B55FFF',
+                    },
+                    fontFamily: {
+                        'cherry': ['Helvetica', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: url('https://i.imgur.com/7vAFvlY.png'); /* Replace with your texture if you want */
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+
+        .flicker {
+            animation: flicker 2s infinite;
+        }
+
+        body, a {
+            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur108.cur'), auto;
+        }
+
+        .oldschool-border {
+            border: 2px solid black;
+            box-shadow: 2px 2px 0 #000;
+            background: #fff;
+        }
+
+        .sparkle-hover:hover {
+            text-shadow: 0 0 5px #2effb9, 0 0 10px #B55FFF;
+        }
+
+        .marquee-style {
+            background-color: #B55FFF;
+            color: black;
+            font-size: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
+    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
+        <div class="text-center">
+            <a href="index.html" class="text-black no-underline hover:text-cherry-hover transition-all duration-300 text-2xl font-bold mb-4 block flicker sparkle-hover" style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <div class="flex justify-center space-x-8 mb-4">
+                <a href="#" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
+                <a href="#" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+                <a href="#" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="#">
+                    <img src="assets/icons/tiktok.png" alt="TikTok" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="#">
+                    <img src="assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="#">
+                    <img src="assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-5 pt-[180px] w-[900px] mx-auto">
+        <div class="grid grid-cols-3 gap-2">
+            <!-- Posts will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <marquee behavior="scroll" direction="left" class="marquee-style">
+        ✦ WELCOME TO CHERRY PALACE ✦ ENJOY YOUR STAY ✦ SITE UNDER CONSTRUCTION ✦ ADD ME TO YOUR TOP 8 ✦
+    </marquee>
+
+    <script>
+        const posts = [
+            { image: 'assets/hxh.webp', date: '12/12/23', permalink: 'hxh' },
+            { image: 'assets/sonic.jpg', date: '12/11/23', permalink: 'sonic' },
+            { image: 'assets/cherry palace.jpg', date: '12/11/23', permalink: 'cherry-palace' },
+            { image: 'assets/slan.jpg', date: '12/10/23', permalink: 'slan' },
+            { image: 'assets/vapor dbz.jpg', date: '12/10/23', permalink: 'vapor-dbz' },
+            { image: 'assets/vegeta.jpg', date: '12/10/23', permalink: 'vegeta' },
+            { image: 'assets/yebear.jpg', date: '12/10/23', permalink: 'yebear' },
+            { image: 'assets/pb.jpg', date: '12/10/23', permalink: 'pb' },
+            { image: 'assets/odst.jpg', date: '12/10/23', permalink: 'odst' },
+            { image: 'assets/mem.jpg', date: '12/10/23', permalink: 'mem' },
+            { image: 'assets/grif.jpg', date: '12/10/23', permalink: 'grif' },
+            { image: 'assets/heat.jpg', date: '12/10/23', permalink: 'heat' },
+            { image: 'assets/jit.jpg', date: '12/10/23', permalink: 'jit' },
+            { image: 'assets/eliot.jpg', date: '12/10/23', permalink: 'eliot' }
+        ];
+
+        function createPost(post) {
+            const isVideo = post.image.endsWith('.mp4');
+            const mediaElement = isVideo 
+                ? `<video class="w-full h-auto" preload="metadata" poster="assets/video-poster.png">
+                        <source src="${post.image}" type="video/mp4">
+                   </video>`
+                : `<img src="${post.image}" alt="Post" class="w-full h-auto">`;
+
+            return `
+                <div class="bg-cherry-purple overflow-hidden oldschool-border">
+                    <a href="./image.html#${post.permalink}" class="block">
+                        ${mediaElement}
+                    </a>
+                    <div class="text-center py-[5px]">
+                        <a href="./image.html#${post.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
+                            ${post.date}
+                        </a>
+                    </div>
+                    <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
+                </div>
+            `;
+        }
+
+        function loadPosts() {
+            const postsContainer = document.querySelector('.grid');
+            posts.forEach(post => {
+                postsContainer.innerHTML += createPost(post);
+            });
+        }
+
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
