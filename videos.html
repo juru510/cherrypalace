@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>CHERRY PALACE - Videos Wing</title>
     <meta charset="utf-8">
@@ -41,38 +42,123 @@
         }
     </style>
 </head>
+
 <body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
     <!-- Top Navigation -->
     <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
         <div class="text-center">
-            <a href="index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <a href="index.html"
+                class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block"
+                style="font-family: Georgia, serif;">CHERRY PALACE</a>
             <div class="flex justify-center space-x-8 mb-4">
-                <a href="movies.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
-                <a href="music.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
-                <a href="games.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
-                <a href="videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
-                <a href="about.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
+                <a href="movies.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
+                <a href="music.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
+                <a href="games.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
+                <a href="videos.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
+                <a href="about.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
             </div>
             <div class="flex justify-center space-x-4">
                 <a href="https://www.tiktok.com/@singularitey?is_from_webapp=1&sender_device=pc" target="_blank">
-                    <img src="assets/icons/tiktok.png" alt="TikTok" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                    <img src="assets/icons/tiktok.png" alt="TikTok"
+                        class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
                 </a>
                 <a href="https://instagram.com/your-instagram" target="_blank">
-                    <img src="assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                    <img src="assets/icons/Instagram_icon.png" alt="Instagram"
+                        class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
                 </a>
                 <a href="https://letterboxd.com/cherryluver/" target="_blank">
-                    <img src="assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                    <img src="assets/icons/letterboxd-mac-icon.png" alt="Letterboxd"
+                        class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Videos Wing Content -->
+    <!-- Videos Grid -->
     <div class="p-5 pt-[180px] w-[900px] mx-auto">
-        <h1 class="text-2xl font-bold mb-8 text-center">VIDEOS WING</h1>
-        <div class="bg-white/10 p-8 rounded-lg">
-            <p class="text-center text-lg">Coming Soon...</p>
+        <div class="grid grid-cols-3 gap-2">
+            <!-- Videos will be dynamically loaded here -->
         </div>
     </div>
+
+    <script>
+        const videos = [
+            {
+                image: 'assets/dexter-1979 copy.mp4',
+                date: '12/10/23',
+                permalink: 'dexter',
+                title: 'DEXTER'
+            },
+            {
+                image: 'assets/damm.mp4',
+                date: '12/10/23',
+                permalink: 'damm',
+                title: 'DAMM'
+            },
+            {
+                image: 'assets/silent.mp4',
+                date: '12/10/23',
+                permalink: 'silent',
+                title: 'SILENT'
+            }
+        ];
+
+        function createVideo(video) {
+            return `
+                <div class="overflow-hidden group">
+                    <a href="image.html#${video.permalink}" class="block bg-black">
+                        <div class="relative cursor-pointer">
+                            <video class="w-full h-full object-contain rounded-t-lg" preload="metadata" muted playsinline>
+                                <source src="${video.image}" type="video/mp4">
+                            </video>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
+                                <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                                    <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">
+                                MP4
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-2 bg-cherry-purple">
+                        <div class="text-center py-[5px]">
+                            <a href="image.html#${video.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
+                                ${video.title}
+                            </a>
+                        </div>
+                        <div class="text-center text-[8px] text-gray-600">
+                            ${video.date}
+                        </div>
+                    </div>
+                    <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
+                </div>
+            `;
+        }
+
+        function loadVideos() {
+            const videosContainer = document.querySelector('.grid');
+            videos.forEach(video => {
+                videosContainer.innerHTML += createVideo(video);
+            });
+
+            // Set the first frame of each video as the thumbnail
+            document.querySelectorAll('video').forEach(video => {
+                video.addEventListener('loadedmetadata', function () {
+                    video.currentTime = 0.1; // Set to a small time to get the first frame
+                });
+            });
+        }
+
+        // Load videos when the page loads
+        window.onload = loadVideos;
+    </script>
 </body>
-</html> 
