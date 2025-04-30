@@ -83,19 +83,19 @@
     <script>
         const videos = [
             {
-                image: 'assets/dexter-1979 copy.mp4',
+                image: '../assets/dexter-1979 copy.mp4',
                 date: '12/10/23',
                 permalink: 'dexter',
                 title: 'DEXTER'
             },
             {
-                image: 'assets/damm.mp4',
+                image: '../assets/damm.mp4',
                 date: '12/10/23',
                 permalink: 'damm',
                 title: 'DAMM'
             },
             {
-                image: 'assets/silent.mp4',
+                image: '../assets/silent.mp4',
                 date: '12/10/23',
                 permalink: 'silent',
                 title: 'SILENT'
@@ -105,7 +105,7 @@
         function createVideo(video) {
             return `
                 <div class="overflow-hidden group">
-                    <a href="image.html#${video.permalink}" class="block bg-black">
+                    <a href="../image.html#${video.permalink}" class="block bg-black">
                         <div class="relative cursor-pointer">
                             <video class="w-full h-full object-contain rounded-t-lg" preload="metadata" muted playsinline>
                                 <source src="${video.image}" type="video/mp4">
@@ -124,7 +124,7 @@
                     </a>
                     <div class="p-2 bg-cherry-purple">
                         <div class="text-center py-[5px]">
-                            <a href="image.html#${video.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
+                            <a href="../image.html#${video.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
                                 ${video.title}
                             </a>
                         </div>
