@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Video Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>TikTok Video Test</h1>
+    
+    <div>
+        <h2>Test Video 1: BERKIN</h2>
+        <video width="320" height="240" controls>
+            <source src="../assets/tiktok_berkin.ae_7498302256891104535.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div>
+        <h2>Test Video 2: CHAPEL OF GHOULS</h2>
+        <video width="320" height="240" controls>
+            <source src="../assets/tiktok_chapel_of_ghouls_7497293133407964438.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        // Log to console when videos are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded');
+            document.querySelectorAll('video').forEach(function(video, index) {
+                console.log('Video ' + (index + 1) + ' loaded');
+                video.addEventListener('loadedmetadata', function() {
+                    console.log('Video ' + (index + 1) + ' metadata loaded');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
