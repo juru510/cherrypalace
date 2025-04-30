@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heat (1995) – Cherry Palace</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cherry-purple': '#d4a3ff',
+                        'cherry-hover': '#2effb9',
+                        'cherry-accent': '#B55FFF',
+                    },
+                    fontFamily: {
+                        'cherry': ['Helvetica', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #d4a3ff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #B55FFF;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2effb9;
+        }
+    </style>
+</head>
+
+<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
+
+    <!-- Top Navigation -->
+    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
+        <div class="text-center">
+            <a href="../index.html"
+                class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block"
+                style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <div class="flex justify-center space-x-8 mb-4">
+                <a href="../movies.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
+                <a href="../music.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MUSIC</a>
+                <a href="../games.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
+                <a href="../videos.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
+                <a href="../about.html"
+                    class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Shrine Page Content -->
+    <section class="pt-[160px] px-4 max-w-3xl mx-auto">
+        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;">🔥 Heat (1995)</h1>
+        <p class="text-center text-[10px] mb-6 leading-tight italic">
+            “I do what I do best. I take scores.”
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <img src="../assets/movies/heat/still1.jpg" alt="Heat still 1" class="rounded-sm w-full">
+            <img src="../assets/movies/heat/still2.jpg" alt="Heat still 2" class="rounded-sm w-full">
+            <img src="../assets/movies/heat/still3.jpg" alt="Heat still 3" class="rounded-sm w-full">
+            <img src="../assets/movies/heat/still4.jpg" alt="Heat still 4" class="rounded-sm w-full">
+        </div>
+
+        <div class="text-[9px] space-y-3 leading-tight">
+            <p><strong>Fav Quote:</strong> “Don’t let yourself get attached to anything you are not willing to walk out
+                on in 30 seconds flat if you feel the heat around the corner.”</p>
+            <p><strong>My Take:</strong> The film makes loneliness feel cinematic. The city breathes, the café scene
+                crackles, and the gunshots hit like thunder. Everyone is chasing something — honor, escape, purpose. And
+                nobody really wins.</p>
+            <p><a href="https://letterboxd.com/cherryluver/film/heat/" target="_blank"
+                    class="text-cherry-hover underline hover:no-underline">See full review on Letterboxd →</a></p>
+        </div>
+    </section>
+
+</body>
+
+</html>
