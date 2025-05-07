@@ -193,9 +193,9 @@
                 <div id="media-container" class="w-full">
                     <!-- Media will be loaded here -->
                 </div>
-                <div class="text-center py-[5px]">
+                <!-- <div class="text-center py-[5px]">
                     <span id="date" class="text-black"></span>
-                </div>
+                </div> -->
                 <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
             </div>
         </div>
@@ -261,14 +261,34 @@
         // Array of all posts (same as in index.html)
         const posts = [
             {
-                image: 'assets/hxh.webp',
+                image: 'assets/images/ghost_machine.webp',
+                date: '12/10/23',
+                permalink: 'ghost-machine'
+            },
+            {
+                image: 'assets/images/ramona.jpg',
                 date: '12/12/23',
-                permalink: 'hxh'
+                permalink: 'ramona'
             },
             {
                 image: 'assets/images/sonic.jpg',
                 date: '12/11/23',
                 permalink: 'sonic'
+            },
+            {
+                image: 'assets/images/sh2lol.jpg',
+                date: '12/12/23',
+                permalink: 'sh2lol'
+            },
+            {
+                image: 'assets/images/eva.jpg',
+                date: '12/12/23',
+                permalink: 'eva'
+            },
+            {
+                image: 'assets/images/gurl.webp',
+                date: '12/10/23',
+                permalink: 'gurl'
             },
             {
                 image: 'assets/images/cherry palace.jpg',
@@ -281,6 +301,11 @@
                 permalink: 'slan'
             },
             {
+                image: 'assets/images/kiss.webp',
+                date: '12/10/23',
+                permalink: 'kiss'
+            },
+            {
                 image: 'assets/images/vapor dbz.jpg',
                 date: '12/10/23',
                 permalink: 'vapor-dbz'
@@ -291,6 +316,11 @@
                 permalink: 'vegeta'
             },
             {
+                image: 'assets/images/hxh.webp',
+                date: '12/12/23',
+                permalink: 'hxh'
+            },
+            {
                 image: 'assets/images/yebear.jpg',
                 date: '12/10/23',
                 permalink: 'yebear'
@@ -299,6 +329,11 @@
                 image: 'assets/images/pb.jpg',
                 date: '12/10/23',
                 permalink: 'pb'
+            },
+            {
+                image: 'assets/images/pastel.webp',
+                date: '12/10/23',
+                permalink: 'pastel'
             },
             {
                 image: 'assets/images/odst.jpg',
@@ -334,26 +369,6 @@
                 image: 'assets/images/ye copy.jpg',
                 date: '12/10/23',
                 permalink: 'ye-copy'
-            },
-            {
-                image: 'assets/images/gurl.webp',
-                date: '12/10/23',
-                permalink: 'gurl'
-            },
-            {
-                image: 'assets/images/kiss.webp',
-                date: '12/10/23',
-                permalink: 'kiss'
-            },
-            {
-                image: 'assets/images/ghost_machine.webp',
-                date: '12/10/23',
-                permalink: 'ghost-machine'
-            },
-            {
-                image: 'assets/images/pastel.webp',
-                date: '12/10/23',
-                permalink: 'pastel'
             },
             {
                 image: '../assets/videos/vids/dexter-1979 copy.mp4',
@@ -542,10 +557,6 @@
 
         if (post) {
             const mediaContainer = document.getElementById('media-container');
-            const dateElement = document.getElementById('date');
-            
-            // Set the date
-            dateElement.textContent = post.date;
             
             // Create and append the media element
             if (post.image.endsWith('.mp4')) {

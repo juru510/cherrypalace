@@ -186,14 +186,29 @@
     <script>
         const posts = [
             {
-                image: 'assets/images/hxh.webp',
+                image: 'assets/images/ghost_machine.webp',
+                date: '12/10/23',
+                permalink: 'ghost-machine'
+            },
+            {
+                image: 'assets/images/ramona.jpg',
                 date: '12/12/23',
-                permalink: 'hxh'
+                permalink: 'ramona'
             },
             {
                 image: 'assets/images/sonic.jpg',
                 date: '12/11/23',
                 permalink: 'sonic'
+            },
+            {
+                image: 'assets/images/sh2lol.jpg',
+                date: '12/12/23',
+                permalink: 'sh2lol'
+            },
+            {
+                image: 'assets/images/eva.jpg',
+                date: '12/12/23',
+                permalink: 'eva'
             },
             {
                 image: 'assets/images/gurl.webp',
@@ -226,9 +241,9 @@
                 permalink: 'vegeta'
             },
             {
-                image: 'assets/images/ghost_machine.webp',
-                date: '12/10/23',
-                permalink: 'ghost-machine'
+                image: 'assets/images/hxh.webp',
+                date: '12/12/23',
+                permalink: 'hxh'
             },
             {
                 image: 'assets/images/yebear.jpg',
@@ -309,11 +324,11 @@
                     <a href="./image.html#${post.permalink}" class="block">
                         ${mediaElement}
                     </a>
-                    <div class="text-center py-[5px]">
+                    <!-- <div class="text-center py-[5px]">
                         <a href="./image.html#${post.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
                             ${post.date}
                         </a>
-                    </div>
+                    </div> -->
                     <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
                 </div>
             `;
