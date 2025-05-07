@@ -136,6 +136,38 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #2effb9;
         }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-img:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 
@@ -175,28 +207,105 @@
         </div>
     </div>
 
-    <!-- Movie Shrine Page Content -->
+    <!-- Movie Page Content -->
     <section class="pt-[160px] px-4 max-w-3xl mx-auto">
-        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;"> Drive (2011)</h1>
+        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Heat (1995)</h1>
         <p class="text-center text-[10px] mb-6 leading-tight italic">
-            "I Drive" 
+            "Don't let yourself get attached to anything you are not willing to walk out on in 30 seconds flat if you feel the heat around the corner."
         </p>
 
-        <div class="grid grid-cols-2 gap-3 mb-6">
-            <img src="/assets/images/Movies/heat/heat1.png" alt="Heat still 1" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/heat/heat2.png" alt="Heat still 2" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/heat/heat3.png" alt="Heat still 3" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/heat/heat4.png" alt="Heat still 4" class="rounded-sm w-full">
-        </div>
-
-        <div class="text-[9px] space-y-3 leading-tight">
-            <p><strong>Fav Quote:</strong> "Don't let yourself get attached to anything you are not willing to walk out
-                on in 30 seconds flat if you feel the heat around the corner."</p>
+        <div class="text-[9px] space-y-3 leading-tight mb-8">
             <p><strong>My Take:</strong> I like this one fr. That shot in the blue oooo</p>
             <p><a href="https://letterboxd.com/cherryluver/film/heat/" target="_blank"
                     class="text-cherry-hover underline hover:no-underline">See full review on Letterboxd →</a></p>
         </div>
+
+        <!-- Credits -->
+        <div class="text-[9px] space-y-2 mb-8 text-center">
+            <p><strong>Director:</strong> Michael Mann</p>
+            <p><strong>Director of Photography:</strong> Dante Spinotti</p>
+            <p><strong>Production Design:</strong> Neil Spisak</p>
+            <p><strong>Costume Design:</strong> Deborah Lynn Scott</p>
+            <p><strong>Year:</strong> 1995</p>
+        </div>
+
+        <!--Gallery -->
+        <div class="mt-12">
+            <h2 class="text-xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Gallery</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="/assets/images/Movies/heat/01 (446).jpg" alt="Heat still 1" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/02 (446).jpg" alt="Heat still 2" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/03 (445).jpg" alt="Heat still 3" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/04 (446).jpg" alt="Heat still 4" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/05 (446).jpg" alt="Heat still 5" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/06 (446).jpg" alt="Heat still 6" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/07 (446).jpg" alt="Heat still 7" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/08 (446).jpg" alt="Heat still 8" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/09 (445).jpg" alt="Heat still 9" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/10 (455).jpg" alt="Heat still 10" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/11 (455).jpg" alt="Heat still 11" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/12 (455).jpg" alt="Heat still 12" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/13 (455).jpg" alt="Heat still 13" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/14 (455).jpg" alt="Heat still 14" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/15 (455).jpg" alt="Heat still 15" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/16 (455).jpg" alt="Heat still 16" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/17 (455).jpg" alt="Heat still 17" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/18 (455).jpg" alt="Heat still 18" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/19 (455).jpg" alt="Heat still 19" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/20 (455).jpg" alt="Heat still 20" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/21 (455).jpg" alt="Heat still 21" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/22 (455).jpg" alt="Heat still 22" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/23 (455).jpg" alt="Heat still 23" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/24 (455).jpg" alt="Heat still 24" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/25 (455).jpg" alt="Heat still 25" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/26 (455).jpg" alt="Heat still 26" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/27 (455).jpg" alt="Heat still 27" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/28 (454).jpg" alt="Heat still 28" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/29 (454).jpg" alt="Heat still 29" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/30 (454).jpg" alt="Heat still 30" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/31 (451).jpg" alt="Heat still 31" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/32 (453).jpg" alt="Heat still 32" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/33 (453).jpg" alt="Heat still 33" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/34 (453).jpg" alt="Heat still 34" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/35 (453).jpg" alt="Heat still 35" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/36 (452).jpg" alt="Heat still 36" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/37 (452).jpg" alt="Heat still 37" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/38 (452).jpg" alt="Heat still 38" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/39 (452).jpg" alt="Heat still 39" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/40 (452).jpg" alt="Heat still 40" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/41 (448).jpg" alt="Heat still 41" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/42 (448).jpg" alt="Heat still 42" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/43 (445).jpg" alt="Heat still 43" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/44 (445).jpg" alt="Heat still 44" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/45 (443).jpg" alt="Heat still 45" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/46 (441).jpg" alt="Heat still 46" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/47 (435).jpg" alt="Heat still 47" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/48 (435).jpg" alt="Heat still 48" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/49 (434).jpg" alt="Heat still 49" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/50 (431).jpg" alt="Heat still 50" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/51 (430).jpg" alt="Heat still 51" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/52 (430).jpg" alt="Heat still 52" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/53 (423).jpg" alt="Heat still 53" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/54 (419).jpg" alt="Heat still 54" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/55 (416).jpg" alt="Heat still 55" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/56 (409).jpg" alt="Heat still 56" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/57 (409).jpg" alt="Heat still 57" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/58 (405).jpg" alt="Heat still 58" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/59 (402).jpg" alt="Heat still 59" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/60 (398).jpg" alt="Heat still 60" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/61 (384).jpg" alt="Heat still 61" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/62 (369).jpg" alt="Heat still 62" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/63 (346).jpg" alt="Heat still 63" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/64 (330).jpg" alt="Heat still 64" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/heat/65 (297).jpg" alt="Heat still 65" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+            </div>
+        </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
 
     <!-- Theme Switcher JavaScript -->    
     <script>
@@ -256,6 +365,28 @@
         
         // Initialize theme switcher when page loads
         document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+
+        // Lightbox functionality
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 
