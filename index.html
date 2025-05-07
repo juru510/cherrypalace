@@ -136,78 +136,26 @@
         .theme-btn.dark {
             background-color: #121212;
         }
-
-        /* Mobile menu styles */
-        .mobile-menu-button {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-button {
-                display: block;
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                z-index: 1001;
-                background: rgba(0,0,0,0.2);
-                padding: 8px;
-                border-radius: 8px;
-                cursor: pointer;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: var(--bg-color);
-                padding: 60px 20px 20px;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 10px 0;
-                text-align: center;
-            }
-
-            .theme-switcher {
-                top: 20px;
-                right: 20px;
-            }
-        }
     </style>
 </head>
 <body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
-    <!-- Mobile Menu Button -->
-    <div class="mobile-menu-button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </div>
-
     <!-- Theme Switcher -->
     <div class="theme-switcher">
         <div class="theme-btn purple active" data-theme="default" title="Purple Theme"></div>
         <div class="theme-btn light" data-theme="light" title="Light Theme"></div>
         <div class="theme-btn dark" data-theme="dark" title="Dark Theme"></div>
     </div>
-
     <!-- Top Navigation -->
     <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
         <div class="text-center">
             <a href="../index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
-            <div class="nav-links flex justify-center space-x-8 mb-4">
+            <div class="flex justify-center space-x-8 mb-4">
                 <a href="movies/movies.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
                 <a href="games/games.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
                 <a href="videos/videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
                 <a href="about/about.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
                 <a href="mailto:juanrubiolamas@gmail.com" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+
             </div>
             <div class="flex justify-center space-x-4">
                 <a href="https://www.tiktok.com/@singularitey?is_from_webapp=1&sender_device=pc" target="_blank">
@@ -218,37 +166,24 @@
                 </a>
                 <a href="https://letterboxd.com/jwuan/" target="_blank">
                     <img src="assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
-                </a>
+                
                 <a href="https://music.apple.com/us/library/playlist/p.RB1A8MbsYvQYddz" target="_blank">
-                    <img src="assets/icons/Apple_Music_icon.svg" alt="Apple Music" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                    <img src="assets/icons/Apple_Music_icon.svg" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+    
+                    
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Posts Grid -->
-    <div class="p-5 pt-[180px] w-full max-w-[900px] mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <div class="p-5 pt-[180px] w-[900px] mx-auto">
+        <div class="columns-3 gap-2">
             <!-- Posts will be dynamically loaded here -->
         </div>
     </div>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuButton.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-
         const posts = [
             {
                 image: 'assets/hxh.webp',
@@ -325,8 +260,8 @@
         function createPost(post) {
             const isVideo = post.image.endsWith('.mp4');
             const mediaElement = isVideo 
-                ? `<div class="relative group cursor-pointer">
-                    <video class="w-full h-auto" preload="metadata" poster="assets/video-poster.png">
+                ? `<div class="relative group cursor-pointer mb-2">
+                    <video class="w-full" preload="metadata" poster="assets/video-poster.png">
                         <source src="${post.image}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all duration-300">
@@ -340,10 +275,12 @@
                         MP4
                     </div>
                 </div>`
-                : `<img src="${post.image}" alt="Post" class="w-full h-auto">`;
+                : `<div class="mb-2">
+                    <img src="${post.image}" alt="Post" class="w-full">
+                </div>`;
 
             return `
-                <div class="bg-cherry-purple overflow-hidden">
+                <div class="bg-cherry-purple overflow-hidden break-inside-avoid">
                     <a href="./image.html#${post.permalink}" class="block">
                         ${mediaElement}
                     </a>
@@ -358,7 +295,7 @@
         }
 
         function loadPosts() {
-            const postsContainer = document.querySelector('.grid');
+            const postsContainer = document.querySelector('.columns-3');
             posts.forEach(post => {
                 postsContainer.innerHTML += createPost(post);
             });
