@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Heat (1995) – Cherry Palace</title>
+    <title>Drive (2011) – Cherry Palace</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -136,6 +136,38 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #2effb9;
         }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-img:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 
@@ -166,7 +198,6 @@
                     <img src="../../assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
                 </a>
                 <a href="https://letterboxd.com/jwuan/" target="_blank">
-                    <img src="../../assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
                 </a>
                 <a href="https://music.apple.com/us/library/playlist/p.RB1A8MbsYvQYddz" target="_blank">
                     <img src="../../assets/icons/Apple_Music_icon.svg" alt="Apple Music" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
@@ -175,28 +206,101 @@
         </div>
     </div>
 
-    <!-- Movie Shrine Page Content -->
+    <!-- Movie Page Content -->
     <section class="pt-[160px] px-4 max-w-3xl mx-auto">
-        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;"> Drive (2011)</h1>
+        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Drive (2011)</h1>
         <p class="text-center text-[10px] mb-6 leading-tight italic">
-            "I Drive" 
+            "I drive."
         </p>
 
-        <div class="grid grid-cols-2 gap-3 mb-6">
-            <img src="/assets/images/Movies/drive/drive1.png" alt="Drive still 1" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/drive/drive2.png" alt="Drive still 2" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/drive/drive3.png" alt="Drive still 3" class="rounded-sm w-full">
-            <img src="/assets/images/Movies/drive/drive4.png" alt="Drive still 4" class="rounded-sm w-full">
+        <div class="text-[9px] space-y-3 leading-tight mb-8">
+            <p><strong>My Take:</strong> Drive like i'm Ryan Gosling. The og "sigma male" movie. Not to be that guy but I watched this movie before tiktok blew it up. I remember seeing a meme reposted from 4chan of some guy basing his entire personality on this movie and his GF found out. I decided to check it out and I thought yeah this is pretty good. I love the neon aesthetics and beautiful soundtrack. One of my first Ryan Gosling movies. </p>
         </div>
 
-        <div class="text-[9px] space-y-3 leading-tight">
-            <p><strong>Fav Quote:</strong> "Don't let yourself get attached to anything you are not willing to walk out
-                on in 30 seconds flat if you feel the heat around the corner."</p>
-            <p><strong>My Take:</strong> I like this one fr. That shot in the blue oooo</p>
-            <p><a href="https://letterboxd.com/cherryluver/film/heat/" target="_blank"
-                    class="text-cherry-hover underline hover:no-underline">See full review on Letterboxd →</a></p>
+        <!-- Credits -->
+        <div class="text-[9px] space-y-2 mb-8 text-center">
+            <p><strong>Director:</strong> Nicolas Winding Refn</p>
+            <p><strong>Director of Photography:</strong> Newton Thomas Sigel</p>
+            <p><strong>Production Design:</strong> Beth Mickle</p>
+            <p><strong>Costume Design:</strong> Erin Benach</p>
+            <p><strong>Year:</strong> 2011</p>
+        </div>
+
+        <!--Gallery -->
+        <div class="mt-12">
+            <h2 class="text-xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Gallery</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="/assets/images/Movies/drive/1 (6).jpg" alt="Drive still 1" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/2 (6).jpg" alt="Drive still 2" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/3 (6).jpg" alt="Drive still 3" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/4 (6).jpg" alt="Drive still 4" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/5 (6).jpg" alt="Drive still 5" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/6 (6).jpg" alt="Drive still 6" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/7 (6).jpg" alt="Drive still 7" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/8 (6).jpg" alt="Drive still 8" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/9 (6).jpg" alt="Drive still 9" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/10 (340).jpg" alt="Drive still 10" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/11 (340).jpg" alt="Drive still 11" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/12 (340).jpg" alt="Drive still 12" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/13 (340).jpg" alt="Drive still 13" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/14 (340).jpg" alt="Drive still 14" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/15 (340).jpg" alt="Drive still 15" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/16 (340).jpg" alt="Drive still 16" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/17 (340).jpg" alt="Drive still 17" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/18 (340).jpg" alt="Drive still 18" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/19 (340).jpg" alt="Drive still 19" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/20 (340).jpg" alt="Drive still 20" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/21 (340).jpg" alt="Drive still 21" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/22 (340).jpg" alt="Drive still 22" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/23 (340).jpg" alt="Drive still 23" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/24 (340).jpg" alt="Drive still 24" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/25 (340).jpg" alt="Drive still 25" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/26 (340).jpg" alt="Drive still 26" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/27 (340).jpg" alt="Drive still 27" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/28 (340).jpg" alt="Drive still 28" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/29 (340).jpg" alt="Drive still 29" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/30 (340).jpg" alt="Drive still 30" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/31 (338).jpg" alt="Drive still 31" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/32 (339).jpg" alt="Drive still 32" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/33 (339).jpg" alt="Drive still 33" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/34 (339).jpg" alt="Drive still 34" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/35 (339).jpg" alt="Drive still 35" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/36 (338).jpg" alt="Drive still 36" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/37 (338).jpg" alt="Drive still 37" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/38 (338).jpg" alt="Drive still 38" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/39 (338).jpg" alt="Drive still 39" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/40 (338).jpg" alt="Drive still 40" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/41 (334).jpg" alt="Drive still 41" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/42 (334).jpg" alt="Drive still 42" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/43 (332).jpg" alt="Drive still 43" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/44 (332).jpg" alt="Drive still 44" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/45 (330).jpg" alt="Drive still 45" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/46 (329).jpg" alt="Drive still 46" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/47 (323).jpg" alt="Drive still 47" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/48 (323).jpg" alt="Drive still 48" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/49 (322).jpg" alt="Drive still 49" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/50 (319).jpg" alt="Drive still 50" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/51 (318).jpg" alt="Drive still 51" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/52 (318).jpg" alt="Drive still 52" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/53 (314).jpg" alt="Drive still 53" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/54 (311).jpg" alt="Drive still 54" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/55 (308).jpg" alt="Drive still 55" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/56 (302).jpg" alt="Drive still 56" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/57 (301).jpg" alt="Drive still 57" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/58 (299).jpg" alt="Drive still 58" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/59 (296).jpg" alt="Drive still 59" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/60 (293).jpg" alt="Drive still 60" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/61 (283).jpg" alt="Drive still 61" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/62 (274).jpg" alt="Drive still 62" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/drive/63 (257).jpg" alt="Drive still 63" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+            </div>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
 
     <!-- Theme Switcher JavaScript -->    
     <script>
@@ -256,7 +360,29 @@
         
         // Initialize theme switcher when page loads
         document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+
+        // Lightbox functionality
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 
-</html>
+</html> 
