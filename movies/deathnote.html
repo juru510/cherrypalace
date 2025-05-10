@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heat (1995) – Cherry Palace</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cherry-purple': '#d4a3ff',
+                        'cherry-hover': '#2effb9',
+                        'cherry-accent': '#B55FFF',
+                    },
+                    fontFamily: {
+                        'cherry': ['Helvetica', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #d4a3ff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #B55FFF;
+            border-radius: 4px;
+        }
+        
+        /* Theme styles */
+        :root {
+            --bg-color: #d4a3ff; /* Cherry Purple */
+            --text-color: #000000;
+            --accent-color: #B55FFF;
+            --hover-color: #2effb9;
+            --card-bg: #d4a3ff;
+        }
+        
+        /* Light theme */
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #cccccc;
+            --hover-color: #666666;
+            --card-bg: #f5f5f5;
+        }
+        
+        /* Dark theme */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #333333;
+            --hover-color: #B55FFF;
+            --card-bg: #1e1e1e;
+        }
+        
+        body.theme-enabled {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .theme-enabled .bg-cherry-purple {
+            background-color: var(--bg-color) !important;
+        }
+        
+        .theme-enabled .text-black {
+            color: var(--text-color) !important;
+        }
+        
+        .theme-enabled .hover\:text-cherry-hover:hover {
+            color: var(--hover-color) !important;
+        }
+        
+        .theme-enabled hr.border-cherry-accent {
+            border-color: var(--accent-color) !important;
+        }
+        
+        .theme-enabled .p-2.bg-cherry-purple {
+            background-color: var(--card-bg) !important;
+        }
+        
+        /* Theme switcher */
+        .theme-switcher {
+            display: flex;
+            gap: 8px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #ffff00;
+            box-shadow: 0 0 10px rgba(255,255,0,0.7);
+        }
+        
+        .theme-btn.purple {
+            background-color: #d4a3ff;
+        }
+        
+        .theme-btn.light {
+            background-color: #ffffff;
+        }
+        
+        .theme-btn.dark {
+            background-color: #121212;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2effb9;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-img:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <div class="theme-btn purple active" data-theme="default" title="Purple Theme"></div>
+        <div class="theme-btn light" data-theme="light" title="Light Theme"></div>
+        <div class="theme-btn dark" data-theme="dark" title="Dark Theme"></div>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
+        <div class="text-center">
+            <a href="../../index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <div class="flex justify-center space-x-8 mb-4">
+                <a href="movies.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
+                <a href="../../games/games.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
+                <a href="../../videos/videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
+                <a href="../../about/about.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
+                <a href="mailto:juanrubiolamas@gmail.com" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.tiktok.com/@singularitey?is_from_webapp=1&sender_device=pc" target="_blank">
+                    <img src="../../assets/icons/tiktok.png" alt="TikTok" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://instagram.com/your-instagram" target="_blank">
+                    <img src="../../assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://letterboxd.com/jwuan/" target="_blank">
+                </a>
+                <a href="https://music.apple.com/us/library/playlist/p.RB1A8MbsYvQYddz" target="_blank">
+                    <img src="../../assets/icons/Apple_Music_i
+                    con.svg" alt="Apple Music" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Page Content -->
+    <section class="pt-[160px] px-4 max-w-3xl mx-auto">
+        <h1 class="text-2xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Death Note (2017)</h1>
+        <p class="text-center text-[10px] mb-6 leading-tight italic">
+            "Its Deathnoting time!"
+        </p>
+
+        <div class="text-[9px] space-y-3 leading-tight mb-8">
+            <p><strong>My Take:</strong>I think I was 13 when I saw this movie, it was around new years and I saw it on netlfix. The trailer looked cool and I watched it and had no issue with it. Turns out it was about an anime and that the movie was actually bad? Idk I really liked it at that age and after a couple rewatches I really fell in love with the cinematography but could see how dumb the movie is. I really liked the premise so I watched the anime and it was then where I was like ahhh damm this movie is ass ngl. Nevertheless I loved watching it, the lighting, music and cinematography is really good which makes up for the terrible story. This was also made me a margaret qualley enthusiast. She was just so seductive and evil it did something weird to my adolescent mind.</p>
+        </div>
+
+        <!-- Credits -->
+        <div class="text-[9px] space-y-2 mb-8 text-center">
+            <p><strong>Director:</strong>  Adam Wingard</p>
+            <p><strong>Director of Photography:</strong>  David Tattersall</p>
+            <p><strong>Production Design:</strong> Tom Hammock</p>
+            <p><strong>Costume Design:</strong>  Emma Potter</p>
+            <p><strong>Year:</strong> 2017</p>
+        </div>
+
+        <!--Gallery -->
+        <div class="mt-12">
+            <h2 class="text-xl font-bold text-center mb-4" style="font-family: Georgia, serif;">Gallery</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="/assets/images/Movies/deathnote/deathnote001.jpg" alt="Death Note still 1" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote002.jpg" alt="Death Note still 2" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote003.jpg" alt="Death Note still 3" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote004.jpg" alt="Death Note still 4" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote005.jpg" alt="Death Note still 5" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote006.jpg" alt="Death Note still 6" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote007.jpg" alt="Death Note still 7" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote008.jpg" alt="Death Note still 8" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote009.jpg" alt="Death Note still 9" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote010.jpg" alt="Death Note still 10" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote011.jpg" alt="Death Note still 11" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote012.jpg" alt="Death Note still 12" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote013.jpg" alt="Death Note still 13" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote014.jpg" alt="Death Note still 14" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote015.jpg" alt="Death Note still 15" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote016.jpg" alt="Death Note still 16" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote017.jpg" alt="Death Note still 17" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote018.jpg" alt="Death Note still 18" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote019.jpg" alt="Death Note still 19" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote020.jpg" alt="Death Note still 20" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote021.jpg" alt="Death Note still 21" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote022.jpg" alt="Death Note still 22" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote023.jpg" alt="Death Note still 23" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote024.jpg" alt="Death Note still 24" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote025.jpg" alt="Death Note still 25" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote026.jpg" alt="Death Note still 26" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote027.jpg" alt="Death Note still 27" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote028.jpg" alt="Death Note still 28" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote029.jpg" alt="Death Note still 29" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote030.jpg" alt="Death Note still 30" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote031.jpg" alt="Death Note still 31" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote032.jpg" alt="Death Note still 32" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote033.jpg" alt="Death Note still 33" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote034.jpg" alt="Death Note still 34" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote035.jpg" alt="Death Note still 35" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote036.jpg" alt="Death Note still 36" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote037.jpg" alt="Death Note still 37" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote038.jpg" alt="Death Note still 38" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote039.jpg" alt="Death Note still 39" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote040.jpg" alt="Death Note still 40" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote041.jpg" alt="Death Note still 41" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote042.jpg" alt="Death Note still 42" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote043.jpg" alt="Death Note still 43" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote044.jpg" alt="Death Note still 44" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote045.jpg" alt="Death Note still 45" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote046.jpg" alt="Death Note still 46" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote047.jpg" alt="Death Note still 47" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote048.jpg" alt="Death Note still 48" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote049.jpg" alt="Death Note still 49" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote050.jpg" alt="Death Note still 50" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote051.jpg" alt="Death Note still 51" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote052.jpg" alt="Death Note still 52" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote053.jpg" alt="Death Note still 53" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote054.jpg" alt="Death Note still 54" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote055.jpg" alt="Death Note still 55" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote056.jpg" alt="Death Note still 56" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote057.jpg" alt="Death Note still 57" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote058.jpg" alt="Death Note still 58" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote059.jpg" alt="Death Note still 59" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote060.jpg" alt="Death Note still 60" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote061.jpg" alt="Death Note still 61" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote062.jpg" alt="Death Note still 62" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote063.jpg" alt="Death Note still 63" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote064.jpg" alt="Death Note still 64" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+                <img src="/assets/images/Movies/deathnote/deathnote065.jpg" alt="Death Note still 65" class="rounded-sm w-full gallery-img" onclick="openLightbox(this.src)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+
+    <!-- Theme Switcher JavaScript -->    
+    <script>
+        // Theme switcher functionality
+        function initThemeSwitcher() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            // THIS IS THE KEY PART THAT MAKES THEMES PERSIST ACROSS PAGES
+            // It reads the saved theme from localStorage
+            const savedTheme = localStorage.getItem('cherrypalace-theme');
+            
+            // Apply saved theme if it exists
+            if (savedTheme) {
+                applyTheme(savedTheme);
+                
+                // Update active button
+                themeButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.theme === savedTheme) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            // Add click event listeners to theme buttons
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const theme = this.dataset.theme;
+                    
+                    // Update active button
+                    themeButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Apply theme
+                    applyTheme(theme);
+                    
+                    // THIS IS THE KEY PART THAT MAKES THEMES PERSIST ACROSS PAGES
+                    // It saves the theme preference to localStorage
+                    localStorage.setItem('cherrypalace-theme', theme);
+                });
+            });
+        }
+        
+        function applyTheme(theme) {
+            const body = document.body;
+            
+            // Remove existing theme classes
+            body.classList.remove('theme-enabled');
+            body.removeAttribute('data-theme');
+            
+            // Apply new theme if not default
+            if (theme !== 'default') {
+                body.classList.add('theme-enabled');
+                body.setAttribute('data-theme', theme);
+            }
+        }
+        
+        // Initialize theme switcher when page loads
+        document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+
+        // Lightbox functionality
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+
+</html>
