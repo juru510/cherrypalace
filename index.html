@@ -186,10 +186,10 @@
     <!-- Music Player (Spotify-style) -->
     <div id="music-player" class="fixed bottom-0 left-0 right-0 z-50 bg-cherry-purple shadow-lg flex items-center justify-between px-6 py-3 border-t border-cherry-accent" style="font-family: 'cherry', Helvetica, monospace;">
         <div class="flex items-center gap-4">
-            <img id="player-album-art" src="assets/images/cherry palace.jpg" alt="Album Art" class="w-14 h-14 rounded shadow object-cover" />
+            <img id="player-album-art" src="assets/images/Album/two.jpeg" alt="Album Art" class="w-14 h-14 rounded shadow object-cover" />
             <div>
-                <div id="player-title" class="font-bold text-sm text-black hover:text-cherry-hover cursor-pointer">Two - Cult Member</div>
-                <div id="player-artist" class="text-xs text-cherry-accent hover:text-cherry-hover cursor-pointer">Unknown Artist</div>
+                <div id="player-title" class="font-bold text-sm text-black hover:text-cherry-hover cursor-pointer">Two</div>
+                <div id="player-artist" class="text-xs text-cherry-accent hover:text-cherry-hover cursor-pointer">Cult Member</div>
             </div>
             <button class="text-cherry-accent hover:text-cherry-hover">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -242,14 +242,9 @@
                     <path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>
                 </svg>
             </button>
-            <div class="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="text-cherry-accent">
-                    <path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>
-                </svg>
-                <div class="relative group">
-                    <input id="player-volume" type="range" min="0" max="1" step="0.01" value="1" class="w-24 h-1 bg-cherry-accent/30 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cherry-hover [&::-webkit-slider-thumb]:opacity-0 group-hover:[&::-webkit-slider-thumb]:opacity-100 transition-opacity" />
-                    <div id="player-volume-bar" class="absolute top-0 left-0 h-1 bg-cherry-hover rounded-full" style="width: 100%"></div>
-                </div>
+            <div class="relative group">
+                <input id="player-volume" type="range" min="0" max="1" step="0.01" value="1" class="w-24 h-1 bg-cherry-accent/30 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cherry-hover [&::-webkit-slider-thumb]:opacity-0 group-hover:[&::-webkit-slider-thumb]:opacity-100 transition-opacity" />
+                <div id="player-volume-bar" class="absolute top-0 left-0 h-1 bg-cherry-hover rounded-full" style="width: 100%"></div>
             </div>
         </div>
         <audio id="player-audio" src="assets/music/Two- Cult Member.m4a"></audio>
@@ -258,12 +253,35 @@
     // Music Player Logic
     const playlist = [
         {
-            title: 'Two - Cult Member',
-            artist: 'Unknown Artist',
+            title: 'Two',
+            artist: 'Cult Member',
             src: 'assets/music/Two- Cult Member.m4a',
-            albumArt: 'assets/images/cherry palace.jpg',
+            albumArt: 'assets/images/Album/two.jpeg',
         },
-        // Add more songs here as needed
+        {
+            title: 'Ghost Machine',
+            artist: 'Unknown Artist',
+            src: 'assets/music/ghost machine.m4a',
+            albumArt: 'assets/images/ghost_machine.webp',
+        },
+        {
+            title: 'Pastel',
+            artist: 'Unknown Artist',
+            src: 'assets/music/pastel.m4a',
+            albumArt: 'assets/images/pastel.webp',
+        },
+        {
+            title: 'Gurl',
+            artist: 'Unknown Artist',
+            src: 'assets/music/gurl.m4a',
+            albumArt: 'assets/images/gurl.webp',
+        },
+        {
+            title: 'Kiss',
+            artist: 'Unknown Artist',
+            src: 'assets/music/kiss.m4a',
+            albumArt: 'assets/images/kiss.webp',
+        }
     ];
     let currentTrack = 0;
     let isPlaying = false;
@@ -286,6 +304,9 @@
     const titleEl = document.getElementById('player-title');
     const artistEl = document.getElementById('player-artist');
     const albumArtEl = document.getElementById('player-album-art');
+    const volumeBtn = document.querySelector('.flex.items-center.gap-2 button');
+    const volumeIcon = volumeBtn.querySelector('svg');
+    let previousVolume = 1;
 
     function loadTrack(index) {
         const track = playlist[index];
@@ -377,17 +398,37 @@
         }
     };
 
-    volume.oninput = (e) => {
-        audio.volume = e.target.value;
-        volumeBar.style.width = `${e.target.value * 100}%`;
-    };
-
-    function formatTime(sec) {
-        sec = Math.floor(sec);
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return `${m}:${s.toString().padStart(2, '0')}`;
+    function toggleMute() {
+        if (audio.volume > 0) {
+            previousVolume = audio.volume;
+            audio.volume = 0;
+            volume.value = 0;
+            volumeBar.style.width = '0%';
+            volumeIcon.innerHTML = '<path d="M13.86 5.47a.75.75 0 0 0-1.061 0l-1.47 1.47-1.47-1.47A.75.75 0 0 0 8.8 6.53L10.269 8l-1.47 1.47a.75.75 0 1 0 1.06 1.06l1.47-1.47 1.47 1.47a.75.75 0 0 0 1.06-1.06L12.39 8l1.47-1.47a.75.75 0 0 0 0-1.06z"></path>';
+        } else {
+            audio.volume = previousVolume;
+            volume.value = previousVolume;
+            volumeBar.style.width = `${previousVolume * 100}%`;
+            volumeIcon.innerHTML = '<path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>';
+        }
     }
+
+    volumeBtn.onclick = toggleMute;
+
+    volume.oninput = (e) => {
+        const newVolume = parseFloat(e.target.value);
+        audio.volume = newVolume;
+        volumeBar.style.width = `${newVolume * 100}%`;
+        
+        // Update volume icon based on volume level
+        if (newVolume === 0) {
+            volumeIcon.innerHTML = '<path d="M13.86 5.47a.75.75 0 0 0-1.061 0l-1.47 1.47-1.47-1.47A.75.75 0 0 0 8.8 6.53L10.269 8l-1.47 1.47a.75.75 0 1 0 1.06 1.06l1.47-1.47 1.47 1.47a.75.75 0 0 0 1.06-1.06L12.39 8l1.47-1.47a.75.75 0 0 0 0-1.06z"></path>';
+        } else if (newVolume < 0.5) {
+            volumeIcon.innerHTML = '<path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>';
+        } else {
+            volumeIcon.innerHTML = '<path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>';
+        }
+    };
 
     // Initialize
     loadTrack(currentTrack);
