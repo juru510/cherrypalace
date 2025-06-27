@@ -184,60 +184,65 @@
     </div>
 
     <!-- Music Player (Spotify-style) -->
-    <div id="music-player" class="fixed bottom-0 left-0 right-0 z-50 bg-cherry-purple shadow-lg flex items-center justify-between px-6 py-3 border-t border-cherry-accent" style="font-family: 'cherry', Helvetica, monospace;">
-        <div class="flex items-center gap-4">
-            <img id="player-album-art" src="assets/images/Album/two.jpeg" alt="Album Art" class="w-14 h-14 rounded shadow object-cover" />
-            <div>
-                <div id="player-title" class="font-bold text-sm text-black hover:text-cherry-hover cursor-pointer">Two</div>
-                <div id="player-artist" class="text-xs text-cherry-accent hover:text-cherry-hover cursor-pointer">Cult Member</div>
+    <div id="music-player" class="fixed bottom-0 left-0 right-0 z-50 bg-cherry-purple shadow-lg grid grid-cols-3 gap-4 items-center px-6 py-3 border-t border-cherry-accent" style="font-family: 'cherry', Helvetica, monospace;">
+        <!-- Left Section: Album Art + Song Info -->
+        <div class="flex items-center gap-4 min-w-0">
+            <img id="player-album-art" src="assets/images/Album/two.jpeg" alt="Album Art" class="w-14 h-14 rounded shadow object-cover flex-shrink-0" />
+            <div class="min-w-0 flex-1">
+                <div id="player-title" class="font-bold text-sm text-black hover:text-cherry-hover cursor-pointer truncate" title="Two">Two</div>
+                <div id="player-artist" class="text-xs text-cherry-accent hover:text-cherry-hover cursor-pointer truncate" title="Cult Member">Cult Member</div>
             </div>
-            <button class="text-cherry-accent hover:text-cherry-hover">
+            <button class="text-cherry-accent hover:text-cherry-hover flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path>
                     <path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H12a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path>
                 </svg>
             </button>
         </div>
-        <div class="flex flex-col items-center flex-1 mx-8">
+        
+        <!-- Center Section: Controls + Progress -->
+        <div class="flex flex-col items-center min-w-0">
             <div class="flex items-center gap-4 mb-1">
-                <button id="player-shuffle" class="text-cherry-accent hover:text-cherry-hover transition-colors" title="Enable shuffle">
+                <button id="player-shuffle" class="text-cherry-accent hover:text-cherry-hover transition-colors flex-shrink-0" title="Enable shuffle">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M13.151.922a.75.75 0 1 0-1.06 1.06L13.109 3H11.16a3.75 3.75 0 0 0-2.873 1.34l-6.173 7.356A2.25 2.25 0 0 1 .39 12.5H0V14h.391a3.75 3.75 0 0 0 2.873-1.34l6.173-7.356a2.25 2.25 0 0 1 1.724-.804h1.947l-1.017 1.018a.75.75 0 0 0 1.06 1.06L15.98 3.75 13.15.922zM.391 3.5H0V2h.391c1.109 0 2.16.49 2.873 1.34L4.89 5.277l-.979 1.167-1.796-2.14A2.25 2.25 0 0 0 .39 3.5z"></path>
                         <path d="M7.5 10.723l.98-1.167.957 1.14a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.829 2.828-2.829 2.828a.75.75 0 1 1-1.06-1.06L13.109 13H11.16a3.75 3.75 0 0 1-2.873-1.34l-.957-1.14z"></path>
                     </svg>
                 </button>
-                <button id="player-prev" class="text-cherry-accent hover:text-cherry-hover transition-colors">
+                <button id="player-prev" class="text-cherry-accent hover:text-cherry-hover transition-colors flex-shrink-0">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"></path>
                     </svg>
                 </button>
-                <button id="player-play" class="bg-cherry-accent text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-cherry-hover transition-colors">
+                <button id="player-play" class="bg-cherry-accent text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-cherry-hover transition-colors flex-shrink-0">
                     <svg id="player-play-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"></path>
                     </svg>
                 </button>
-                <button id="player-next" class="text-cherry-accent hover:text-cherry-hover transition-colors">
+                <button id="player-next" class="text-cherry-accent hover:text-cherry-hover transition-colors flex-shrink-0">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"></path>
                     </svg>
                 </button>
-                <button id="player-repeat" class="text-cherry-accent hover:text-cherry-hover transition-colors" title="Enable repeat">
+                <button id="player-repeat" class="text-cherry-accent hover:text-cherry-hover transition-colors flex-shrink-0" title="Enable repeat">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 1 1 1.06 1.06L9.811 12h2.439a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"></path>
                     </svg>
                 </button>
             </div>
-            <div class="flex items-center gap-2 w-full">
-                <span id="player-current" class="text-xs text-cherry-accent min-w-[32px]">0:00</span>
+            <div class="flex items-center gap-2 w-full max-w-md">
+                <span id="player-current" class="text-xs text-cherry-accent min-w-[32px] flex-shrink-0">0:00</span>
                 <div class="flex-1 relative group">
                     <input id="player-progress" type="range" min="0" max="100" value="0" class="w-full h-1 bg-cherry-accent/30 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cherry-hover [&::-webkit-slider-thumb]:opacity-0 group-hover:[&::-webkit-slider-thumb]:opacity-100 transition-opacity" />
                     <div id="player-progress-bar" class="absolute top-0 left-0 h-1 bg-cherry-hover rounded-full" style="width: 0%"></div>
                 </div>
-                <span id="player-duration" class="text-xs text-cherry-accent min-w-[32px] text-right">0:00</span>
+                <span id="player-duration" class="text-xs text-cherry-accent min-w-[32px] text-right flex-shrink-0">0:00</span>
             </div>
         </div>
-        <div class="flex items-center gap-2 min-w-[120px] justify-end">
-            <button class="text-cherry-accent hover:text-cherry-hover">
+        
+        <!-- Right Section: Volume Controls -->
+        <div class="flex items-center gap-2 justify-end min-w-0">
+            <button class="text-cherry-accent hover:text-cherry-hover flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M9.741.85a.75.75 0 0 1 .375.65v13.5a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1 0-6.3l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.142 2.142 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"></path>
                 </svg>
@@ -259,28 +264,40 @@
             albumArt: 'assets/images/Album/two.jpeg',
         },
         {
-            title: 'Ghost Machine',
-            artist: 'Unknown Artist',
-            src: 'assets/music/ghost machine.m4a',
-            albumArt: 'assets/images/ghost_machine.webp',
+            title: 'Clouds',
+            artist: 'Pastel Ghost',
+            src: 'assets/music/Clouds- Pastel Ghost.m4a',
+            albumArt: 'assets/images/Album/abyss.jpeg'
         },
         {
-            title: 'Pastel',
-            artist: 'Unknown Artist',
-            src: 'assets/music/pastel.m4a',
-            albumArt: 'assets/images/pastel.webp',
+            title: 'Warmpop',
+            artist: 'Esprit George Clanton',
+            src: 'assets/music/Warmpop- Esprit George Clanton.m4a',
+            albumArt: 'assets/images/Album/two.jpeg'
         },
         {
-            title: 'Gurl',
-            artist: 'Unknown Artist',
-            src: 'assets/music/gurl.m4a',
-            albumArt: 'assets/images/gurl.webp',
+            title: 'Celeste',
+            artist: 'Krosia',
+            src: 'assets/music/Celeste- Krosia.m4a',
+            albumArt: 'assets/images/Album/two.jpeg'
         },
         {
-            title: 'Kiss',
-            artist: 'Unknown Artist',
-            src: 'assets/music/kiss.m4a',
-            albumArt: 'assets/images/kiss.webp',
+            title: 'U Werent Here I Really Miss You',
+            artist: 'Cult Member',
+            src: 'assets/music/U Werent Here I Really Miss You- Cult Member.m4a',
+            albumArt: 'assets/images/Album/two.jpeg'
+        },
+        {
+            title: 'Three',
+            artist: 'Cult Member',
+            src: 'assets/music/Three- Cult Member.m4a',
+            albumArt: 'assets/images/Album/two.jpeg'
+        },
+        {
+            title: 'Ten',
+            artist: 'Cult Member',
+            src: 'assets/music/Ten- Cult Member.m4a',
+            albumArt: 'assets/images/Album/two.jpeg'
         }
     ];
     let currentTrack = 0;
@@ -545,6 +562,486 @@
                 image: 'assets/images/ye copy.jpg',
                 date: '12/10/23',
                 permalink: 'ye-copy'
+            },
+            {
+                image: 'assets/images/U1.jpg',
+                date: '12/13/23',
+                permalink: 'u1'
+            },
+            {
+                image: 'assets/images/lfndtoirttvx.jpg',
+                date: '12/13/23',
+                permalink: 'lfndtoirttvx'
+            },
+            {
+                image: 'assets/images/ffe3f00e5862c1791090a958c701b1cf.jpg',
+                date: '12/13/23',
+                permalink: 'ffe3f00e5862c1791090a958c701b1cf'
+            },
+            {
+                image: 'assets/images/ff39e405f191611971e922c32315eec2.jpg',
+                date: '12/13/23',
+                permalink: 'ff39e405f191611971e922c32315eec2'
+            },
+            {
+                image: 'assets/images/fe96381e8a6d523a2409509578a42113.jpg',
+                date: '12/13/23',
+                permalink: 'fe96381e8a6d523a2409509578a42113'
+            },
+            {
+                image: 'assets/images/fda92661a02fc46f04f7d20d5bd390a9.jpg',
+                date: '12/13/23',
+                permalink: 'fda92661a02fc46f04f7d20d5bd390a9'
+            },
+            {
+                image: 'assets/images/fb9e6c2d6a665f195c7fd5a211277117.jpg',
+                date: '12/13/23',
+                permalink: 'fb9e6c2d6a665f195c7fd5a211277117'
+            },
+            {
+                image: 'assets/images/fb8abdaeaa9738c89299030e90e6ecfd.jpg',
+                date: '12/13/23',
+                permalink: 'fb8abdaeaa9738c89299030e90e6ecfd'
+            },
+            {
+                image: 'assets/images/fae791b4f551c53b25cc1d584f8d3f29.jpg',
+                date: '12/13/23',
+                permalink: 'fae791b4f551c53b25cc1d584f8d3f29'
+            },
+            {
+                image: 'assets/images/f429fe878c11425dab0af9c404589cea.jpg',
+                date: '12/13/23',
+                permalink: 'f429fe878c11425dab0af9c404589cea'
+            },
+            {
+                image: 'assets/images/f426b5511343b8821ae81824e469c9b3.jpg',
+                date: '12/13/23',
+                permalink: 'f426b5511343b8821ae81824e469c9b3'
+            },
+            {
+                image: 'assets/images/f65a21fbb1197d2d5319c06713daf73a.jpg',
+                date: '12/13/23',
+                permalink: 'f65a21fbb1197d2d5319c06713daf73a'
+            },
+            {
+                image: 'assets/images/f4a0f725d8bc7d9e4de69187e89cc87c.jpg',
+                date: '12/13/23',
+                permalink: 'f4a0f725d8bc7d9e4de69187e89cc87c'
+            },
+            {
+                image: 'assets/images/edd8eec4b6bee0acf06b91bb6d6b0a8c.jpg',
+                date: '12/13/23',
+                permalink: 'edd8eec4b6bee0acf06b91bb6d6b0a8c'
+            },
+            {
+                image: 'assets/images/e6781c99d8943db0830cd5ab3a7d9d11.jpg',
+                date: '12/13/23',
+                permalink: 'e6781c99d8943db0830cd5ab3a7d9d11'
+            },
+            {
+                image: 'assets/images/e322d525129cef8ab8dae582493c3f6a.jpg',
+                date: '12/13/23',
+                permalink: 'e322d525129cef8ab8dae582493c3f6a'
+            },
+            {
+                image: 'assets/images/e49a4dfb76a64dd2b13ba30f9557ed1a.jpg',
+                date: '12/13/23',
+                permalink: 'e49a4dfb76a64dd2b13ba30f9557ed1a'
+            },
+            {
+                image: 'assets/images/e26f0dbdccef09a21a527c7ebfe81015.jpg',
+                date: '12/13/23',
+                permalink: 'e26f0dbdccef09a21a527c7ebfe81015'
+            },
+            {
+                image: 'assets/images/e0dff4b96cc2e709cbf18db852eca4ea.jpg',
+                date: '12/13/23',
+                permalink: 'e0dff4b96cc2e709cbf18db852eca4ea'
+            },
+            {
+                image: 'assets/images/defcf9f27f764817f946415e87c19e67.jpg',
+                date: '12/13/23',
+                permalink: 'defcf9f27f764817f946415e87c19e67'
+            },
+            {
+                image: 'assets/images/dbz vapor.jpg',
+                date: '12/13/23',
+                permalink: 'dbz-vapor'
+            },
+            {
+                image: 'assets/images/d8783dff42d8ca5ec4d41a685ce62179.jpg',
+                date: '12/13/23',
+                permalink: 'd8783dff42d8ca5ec4d41a685ce62179'
+            },
+            {
+                image: 'assets/images/d69e9c3e1f4aae654fe69a9594712f35.jpg',
+                date: '12/13/23',
+                permalink: 'd69e9c3e1f4aae654fe69a9594712f35'
+            },
+            {
+                image: 'assets/images/d31ee623a8ae81ba9e48ca441776fe7e.jpg',
+                date: '12/13/23',
+                permalink: 'd31ee623a8ae81ba9e48ca441776fe7e'
+            },
+            {
+                image: 'assets/images/d16c0959acc9789c4c236622b9b3f163.jpg',
+                date: '12/13/23',
+                permalink: 'd16c0959acc9789c4c236622b9b3f163'
+            },
+            {
+                image: 'assets/images/d9b2edfd15c7ced210b4464c43ae8a3e.jpg',
+                date: '12/13/23',
+                permalink: 'd9b2edfd15c7ced210b4464c43ae8a3e'
+            },
+            {
+                image: 'assets/images/d4d0c6fe77676625db5dd0751f83a5f3.jpg',
+                date: '12/13/23',
+                permalink: 'd4d0c6fe77676625db5dd0751f83a5f3'
+            },
+            {
+                image: 'assets/images/cute japanese cat wallpaper.jpeg',
+                date: '12/13/23',
+                permalink: 'cute-japanese-cat-wallpaper'
+            },
+            {
+                image: 'assets/images/ceb5522ee3103a96587e2a5e048fe37a.jpg',
+                date: '12/13/23',
+                permalink: 'ceb5522ee3103a96587e2a5e048fe37a'
+            },
+            {
+                image: 'assets/images/ce98ce4f0cef3e7396c5ec5a168d7f2b.jpg',
+                date: '12/13/23',
+                permalink: 'ce98ce4f0cef3e7396c5ec5a168d7f2b'
+            },
+            {
+                image: 'assets/images/cc99183947e1a6d9f2dfbdadc98cbf82.jpg',
+                date: '12/13/23',
+                permalink: 'cc99183947e1a6d9f2dfbdadc98cbf82'
+            },
+            {
+                image: 'assets/images/cbd839cc77ee88005ba479801ec729ce.jpg',
+                date: '12/13/23',
+                permalink: 'cbd839cc77ee88005ba479801ec729ce'
+            },
+            {
+                image: 'assets/images/ca3a6e9a842a82599bf1dd6e6bb7aab0.jpg',
+                date: '12/13/23',
+                permalink: 'ca3a6e9a842a82599bf1dd6e6bb7aab0'
+            },
+            {
+                image: 'assets/images/c949c5956be49fff94f5ab25f76433c1.jpg',
+                date: '12/13/23',
+                permalink: 'c949c5956be49fff94f5ab25f76433c1'
+            },
+            {
+                image: 'assets/images/c142d4e8723d6c0bffae70a046ef4791.jpg',
+                date: '12/13/23',
+                permalink: 'c142d4e8723d6c0bffae70a046ef4791'
+            },
+            {
+                image: 'assets/images/c50bcd1382cedaef802c010a83f4695a.jpg',
+                date: '12/13/23',
+                permalink: 'c50bcd1382cedaef802c010a83f4695a'
+            },
+            {
+                image: 'assets/images/c47ef634df1353c0803d68e4b247a6b4.jpg',
+                date: '12/13/23',
+                permalink: 'c47ef634df1353c0803d68e4b247a6b4'
+            },
+            {
+                image: 'assets/images/c33d1713241dcce14a370261056aed29.jpg',
+                date: '12/13/23',
+                permalink: 'c33d1713241dcce14a370261056aed29'
+            },
+            {
+                image: 'assets/images/c9b0be9e680639ca2c1ecdd8de6989ba.jpg',
+                date: '12/13/23',
+                permalink: 'c9b0be9e680639ca2c1ecdd8de6989ba'
+            },
+            {
+                image: 'assets/images/c7e326cfd14ed555c112544bf57b9063.jpg',
+                date: '12/13/23',
+                permalink: 'c7e326cfd14ed555c112544bf57b9063'
+            },
+            {
+                image: 'assets/images/c1c5e11d1530e6d28d4a26bff88e3203.jpg',
+                date: '12/13/23',
+                permalink: 'c1c5e11d1530e6d28d4a26bff88e3203'
+            },
+            {
+                image: 'assets/images/c0dfeaf662005afe6d37fc16f2dedd99.jpg',
+                date: '12/13/23',
+                permalink: 'c0dfeaf662005afe6d37fc16f2dedd99'
+            },
+            {
+                image: 'assets/images/bc661054e1911c77176bf669031a97bf.jpg',
+                date: '12/13/23',
+                permalink: 'bc661054e1911c77176bf669031a97bf'
+            },
+            {
+                image: 'assets/images/bc67372df98388233215bf23725321aa.jpg',
+                date: '12/13/23',
+                permalink: 'bc67372df98388233215bf23725321aa'
+            },
+            {
+                image: 'assets/images/baeea6352c8e420155080c2ccfa7405c.jpg',
+                date: '12/13/23',
+                permalink: 'baeea6352c8e420155080c2ccfa7405c'
+            },
+            {
+                image: 'assets/images/b081560e06c113e74c077a1291d6d019.jpg',
+                date: '12/13/23',
+                permalink: 'b081560e06c113e74c077a1291d6d019'
+            },
+            {
+                image: 'assets/images/b945fee61ae68cc808e1145097ab9643.jpg',
+                date: '12/13/23',
+                permalink: 'b945fee61ae68cc808e1145097ab9643'
+            },
+            {
+                image: 'assets/images/b906a1140b3c1a2cc26f8718413dc5f6.jpg',
+                date: '12/13/23',
+                permalink: 'b906a1140b3c1a2cc26f8718413dc5f6'
+            },
+            {
+                image: 'assets/images/b90fce3d964caa1b4a5bf0ff5f9e4131.jpg',
+                date: '12/13/23',
+                permalink: 'b90fce3d964caa1b4a5bf0ff5f9e4131'
+            },
+            {
+                image: 'assets/images/b73eb18e55bffcc8fe0d8b1737bd6132.jpg',
+                date: '12/13/23',
+                permalink: 'b73eb18e55bffcc8fe0d8b1737bd6132'
+            },
+            {
+                image: 'assets/images/b5f61b49feef0c2118bab644706bb83e.jpg',
+                date: '12/13/23',
+                permalink: 'b5f61b49feef0c2118bab644706bb83e'
+            },
+            {
+                image: 'assets/images/b5f6d8ab5f42329ae7d3d57bdc9b89e9.jpg',
+                date: '12/13/23',
+                permalink: 'b5f6d8ab5f42329ae7d3d57bdc9b89e9'
+            },
+            {
+                image: 'assets/images/b4d4cbb94113fc151471eae81ecff8aa.jpg',
+                date: '12/13/23',
+                permalink: 'b4d4cbb94113fc151471eae81ecff8aa'
+            },
+            {
+                image: 'assets/images/accc1d49243fd31f82f2232eb47e8193.jpg',
+                date: '12/13/23',
+                permalink: 'accc1d49243fd31f82f2232eb47e8193'
+            },
+            {
+                image: 'assets/images/abb81a5446beeb13892e998bfe56471d.jpg',
+                date: '12/13/23',
+                permalink: 'abb81a5446beeb13892e998bfe56471d'
+            },
+            {
+                image: 'assets/images/a41616234d8384c6fd39a02c986b8d6c.jpg',
+                date: '12/13/23',
+                permalink: 'a41616234d8384c6fd39a02c986b8d6c'
+            },
+            {
+                image: 'assets/images/a69342fa73ed327465bbdffce3691940.jpg',
+                date: '12/13/23',
+                permalink: 'a69342fa73ed327465bbdffce3691940'
+            },
+            {
+                image: 'assets/images/a8411c8f5ea25e153c7347c881782246.jpg',
+                date: '12/13/23',
+                permalink: 'a8411c8f5ea25e153c7347c881782246'
+            },
+            {
+                image: 'assets/images/a833fcb9a5bfdace7a03d753273eaeba.jpg',
+                date: '12/13/23',
+                permalink: 'a833fcb9a5bfdace7a03d753273eaeba'
+            },
+            {
+                image: 'assets/images/a57e66b7bf1cd532b2e74fe1bcb60987.jpg',
+                date: '12/13/23',
+                permalink: 'a57e66b7bf1cd532b2e74fe1bcb60987'
+            },
+            {
+                image: 'assets/images/a36f4e2a7b7c4ab61930010e049ec568.jpg',
+                date: '12/13/23',
+                permalink: 'a36f4e2a7b7c4ab61930010e049ec568'
+            },
+            {
+                image: 'assets/images/a2f62c65b79453f3a51795c33973dee3.jpg',
+                date: '12/13/23',
+                permalink: 'a2f62c65b79453f3a51795c33973dee3'
+            },
+            {
+                image: 'assets/images/51535030920a34b1ab8b664b4063ed08.jpg',
+                date: '12/13/23',
+                permalink: '51535030920a34b1ab8b664b4063ed08'
+            },
+            {
+                image: 'assets/images/945374696c339b6a2cb1663c5594b74d.jpg',
+                date: '12/13/23',
+                permalink: '945374696c339b6a2cb1663c5594b74d'
+            },
+            {
+                image: 'assets/images/380642520e5e62127763df1be8974c96.jpg',
+                date: '12/13/23',
+                permalink: '380642520e5e62127763df1be8974c96'
+            },
+            {
+                image: 'assets/images/8189871d1092895a974ad5f2f646e2c0.jpg',
+                date: '12/13/23',
+                permalink: '8189871d1092895a974ad5f2f646e2c0'
+            },
+            {
+                image: 'assets/images/5697849bbcaab06277842788f90d3fbc.jpg',
+                date: '12/13/23',
+                permalink: '5697849bbcaab06277842788f90d3fbc'
+            },
+            {
+                image: 'assets/images/818629a7b76363077fd05a928a49c671.jpg',
+                date: '12/13/23',
+                permalink: '818629a7b76363077fd05a928a49c671'
+            },
+            {
+                image: 'assets/images/0625686d6464b7723cabb204a0d5502e.jpg',
+                date: '12/13/23',
+                permalink: '0625686d6464b7723cabb204a0d5502e'
+            },
+            {
+                image: 'assets/images/412220f2d3f766684b30e4a521a46e30.jpg',
+                date: '12/13/23',
+                permalink: '412220f2d3f766684b30e4a521a46e30'
+            },
+            {
+                image: 'assets/images/281458b197f9551b8a709e24739817dd.jpg',
+                date: '12/13/23',
+                permalink: '281458b197f9551b8a709e24739817dd'
+            },
+            {
+                image: 'assets/images/168690d82171eca9a3ecc77fade9023b.jpg',
+                date: '12/13/23',
+                permalink: '168690d82171eca9a3ecc77fade9023b'
+            },
+            {
+                image: 'assets/images/68905d3367c14fdf9f09e82dbf963b3c.jpg',
+                date: '12/13/23',
+                permalink: '68905d3367c14fdf9f09e82dbf963b3c'
+            },
+            {
+                image: 'assets/images/67928cd0828c99f6b0d657b676a43183.jpg',
+                date: '12/13/23',
+                permalink: '67928cd0828c99f6b0d657b676a43183'
+            },
+            {
+                image: 'assets/images/55604c18836fb6efa79e4317b0d4e1fc.jpg',
+                date: '12/13/23',
+                permalink: '55604c18836fb6efa79e4317b0d4e1fc'
+            },
+            {
+                image: 'assets/images/38087e88bfcf6ac01d9bcae68dff32da.jpg',
+                date: '12/13/23',
+                permalink: '38087e88bfcf6ac01d9bcae68dff32da'
+            },
+            {
+                image: 'assets/images/11589afa5462eb2f5a21036cffb474eb.jpg',
+                date: '12/13/23',
+                permalink: '11589afa5462eb2f5a21036cffb474eb'
+            },
+            {
+                image: 'assets/images/9459c5f344d59531a0ee076897d63c53.jpg',
+                date: '12/13/23',
+                permalink: '9459c5f344d59531a0ee076897d63c53'
+            },
+            {
+                image: 'assets/images/8941e71464be8fe81ade92a86817338e.jpg',
+                date: '12/13/23',
+                permalink: '8941e71464be8fe81ade92a86817338e'
+            },
+            {
+                image: 'assets/images/8745e266dc2501b5ff1b9d4997d52f16.jpg',
+                date: '12/13/23',
+                permalink: '8745e266dc2501b5ff1b9d4997d52f16'
+            },
+            {
+                image: 'assets/images/7970feff13350743e66c4e30376923d6.jpg',
+                date: '12/13/23',
+                permalink: '7970feff13350743e66c4e30376923d6'
+            },
+            {
+                image: 'assets/images/6029c25f343c0fd0dd523e1ddb3c0ce6.jpg',
+                date: '12/13/23',
+                permalink: '6029c25f343c0fd0dd523e1ddb3c0ce6'
+            },
+            {
+                image: 'assets/images/4477ee8ba9689e3a8eeeb00b75f76296.jpg',
+                date: '12/13/23',
+                permalink: '4477ee8ba9689e3a8eeeb00b75f76296'
+            },
+            {
+                image: 'assets/images/3782e9bbf7cc6fbefdcd56f83b4f6823.jpg',
+                date: '12/13/23',
+                permalink: '3782e9bbf7cc6fbefdcd56f83b4f6823'
+            },
+            {
+                image: 'assets/images/3380a9613c202b8f9ad9e062646a5871.jpg',
+                date: '12/13/23',
+                permalink: '3380a9613c202b8f9ad9e062646a5871'
+            },
+            {
+                image: 'assets/images/986c810153214fcc52f11e0570157575.jpg',
+                date: '12/13/23',
+                permalink: '986c810153214fcc52f11e0570157575'
+            },
+            {
+                image: 'assets/images/955ec1985ce469894f1c2a537366236b.jpg',
+                date: '12/13/23',
+                permalink: '955ec1985ce469894f1c2a537366236b'
+            },
+            {
+                image: 'assets/images/902c5451a2e8faf5210bb773e5e8174c.jpg',
+                date: '12/13/23',
+                permalink: '902c5451a2e8faf5210bb773e5e8174c'
+            },
+            {
+                image: 'assets/images/754d5d210464f8c610ff60af88343cfb.jpg',
+                date: '12/13/23',
+                permalink: '754d5d210464f8c610ff60af88343cfb'
+            },
+            {
+                image: 'assets/images/623ad73a9e3a05fae15053b55637ba80.jpg',
+                date: '12/13/23',
+                permalink: '623ad73a9e3a05fae15053b55637ba80'
+            },
+            {
+                image: 'assets/images/594cb5a0c54892dff5c1e44e614a2382.jpg',
+                date: '12/13/23',
+                permalink: '594cb5a0c54892dff5c1e44e614a2382'
+            },
+            {
+                image: 'assets/images/521ac387720523f8ddb78d5c2271d4d2.jpg',
+                date: '12/13/23',
+                permalink: '521ac387720523f8ddb78d5c2271d4d2'
+            },
+            {
+                image: 'assets/images/507d1ab269664a0aa40c93e881b4bec5.jpg',
+                date: '12/13/23',
+                permalink: '507d1ab269664a0aa40c93e881b4bec5'
+            },
+            {
+                image: 'assets/images/496fba09bdb594b7cde751884a8952d8.jpg',
+                date: '12/13/23',
+                permalink: '496fba09bdb594b7cde751884a8952d8'
+            },
+            {
+                image: 'assets/images/470c52a8002bb963b5d9e298ff24acb3.jpg',
+                date: '12/13/23',
+                permalink: '470c52a8002bb963b5d9e298ff24acb3'
+            },
+            {
+                image: 'assets/images/442c78f308c20d8e2d51cd9d669c7951.jpg',
+                date: '12/13/23',
+                permalink: '442c78f308c20d8e2d51cd9d669c7951'
             }
         ];
 
