@@ -263,8 +263,6 @@
 
         .video-modal-content {
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
             background: #000;
             display: flex;
             flex-direction: column;
@@ -300,34 +298,6 @@
             background: rgba(255,255,255,0.2);
         }
 
-        .search-container {
-            flex: 1;
-            max-width: 400px;
-            margin: 0 20px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 12px 16px;
-            background: #333;
-            border: none;
-            border-radius: 20px;
-            color: white;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search-bar::placeholder {
-            color: #999;
-        }
-
-        .search-icon {
-            color: white;
-            font-size: 16px;
-        }
-
         .more-options-btn {
             background: rgba(255,255,255,0.1);
             border: none;
@@ -345,6 +315,158 @@
 
         .more-options-btn:hover {
             background: rgba(255,255,255,0.2);
+        }
+
+        .options-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: rgba(0,0,0,0.9);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 180px;
+            display: none;
+            z-index: 15;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .options-dropdown.active {
+            display: block;
+        }
+
+        .option-item {
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        .option-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .speed-options {
+            display: none;
+            flex-direction: column;
+            background: rgba(0,0,0,0.8);
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .speed-options.active {
+            display: flex;
+        }
+
+        .speed-option {
+            padding: 8px 16px;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s ease;
+        }
+
+        .speed-option:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .speed-option.active {
+            color: #fe2c55;
+            font-weight: 600;
+        }
+
+        /* Sliders */
+        .slider-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.3);
+            outline: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .slider:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Volume slider specific */
+        .volume-slider {
+            width: 80px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .volume-control:hover .volume-slider {
+            opacity: 1;
+        }
+
+        /* Video progress slider */
+        .video-progress-slider {
+            flex: 1;
+            margin: 0 15px;
+            background: linear-gradient(to right, white 0%, white 0%, rgba(255,255,255,0.3) 0%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .video-progress-slider::-webkit-slider-thumb {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-progress-slider:hover::-webkit-slider-thumb {
+            opacity: 1;
+        }
+
+        .video-progress-slider::-moz-range-thumb {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-progress-slider:hover::-moz-range-thumb {
+            opacity: 1;
         }
 
         /* Video Container */
@@ -367,7 +489,6 @@
 
         .video-modal video {
             max-width: 100%;
-            max-height: 70vh;
             object-fit: contain;
         }
 
@@ -570,14 +691,37 @@
         <div class="video-modal-content">
             <!-- Header -->
             <div class="video-header">
-                <button class="close-btn" onclick="closeVideoModal()">×</button>
-                <div class="search-container">
-                    <div class="search-bar">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" placeholder="Find related content" style="background: none; border: none; color: white; flex: 1; outline: none;">
+                <button class="close-btn" onclick="closeVideoModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+                <button class="more-options-btn" onclick="toggleOptionsMenu()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                </button>
+                
+                <!-- Options Dropdown -->
+                <div class="options-dropdown" id="options-dropdown">
+                    <div class="option-item" onclick="toggleSpeedMenu()">
+                        <span>⚡</span>
+                        <span>Playback Speed</span>
+                        <span style="margin-left: auto;">▶</span>
+                    </div>
+                    <div class="speed-options" id="speed-options">
+                        <div class="speed-option" onclick="setPlaybackSpeed(0.5)">0.5x</div>
+                        <div class="speed-option" onclick="setPlaybackSpeed(0.75)">0.75x</div>
+                        <div class="speed-option active" onclick="setPlaybackSpeed(1)">1x</div>
+                        <div class="speed-option" onclick="setPlaybackSpeed(1.25)">1.25x</div>
+                        <div class="speed-option" onclick="setPlaybackSpeed(1.5)">1.5x</div>
+                        <div class="speed-option" onclick="setPlaybackSpeed(2)">2x</div>
+                    </div>
+                    <div class="option-item" onclick="downloadVideo()">
+                        <span>⬇</span>
+                        <span>Download</span>
                     </div>
                 </div>
-                <button class="more-options-btn">⋮</button>
             </div>
             
             <!-- Video Container -->
@@ -592,10 +736,9 @@
                     
                     <!-- Progress Bar -->
                     <div class="progress-container">
-                        <div class="progress-bar" onclick="seekVideo(event)">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
                         <div class="timestamp" id="timestamp">00:00 / 00:00</div>
+                        <input type="range" class="slider video-progress-slider" id="video-progress-slider" min="0" max="100" value="0" oninput="seekVideoSlider(this.value)">
+                        <div class="timestamp" id="timestamp-end">00:00 / 00:00</div>
                     </div>
                 </div>
             </div>
@@ -604,11 +747,25 @@
         <!-- Side Controls - Floating outside modal -->
         <div class="side-controls">
             <div class="nav-arrows">
-                <button class="control-btn" onclick="previousVideo()">↑</button>
-                <button class="control-btn" onclick="nextVideo()">↓</button>
+                <button class="control-btn" onclick="previousVideo()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" onclick="nextVideo()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+                    </svg>
+                </button>
             </div>
-            <button class="control-btn" onclick="toggleMute()" id="volume-btn">🔊</button>
-            <button class="control-btn" onclick="toggleFullscreen()">⛶</button>
+            <div class="volume-control">
+                <button class="control-btn" onclick="toggleMute()" id="volume-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                </button>
+                <input type="range" class="slider volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1" oninput="setVolume(this.value)">
+            </div>
         </div>
     </div>
 
@@ -653,6 +810,8 @@
             }, 
         ];
 
+        let currentVideoIndex = 0;
+
         // Function to create TikTok-style video card
         function createTikTokVideoCard(video) {
             return `
@@ -675,9 +834,11 @@
 
         // Function to play video in modal
         function playVideo(videoId) {
-            const video = videos.find(v => v.id === videoId);
-            if (!video) return;
-
+            const videoIndex = videos.findIndex(v => v.id === videoId);
+            if (videoIndex === -1) return;
+            
+            currentVideoIndex = videoIndex;
+            const video = videos[videoIndex];
             const modal = document.getElementById('video-modal');
             const modalVideo = document.getElementById('modal-video');
             const playButton = document.getElementById('play-button');
@@ -703,18 +864,24 @@
 
         // Setup video controls
         function setupVideoControls(video, playButton) {
-            const progressFill = document.getElementById('progress-fill');
+            const progressSlider = document.getElementById('video-progress-slider');
             const timestamp = document.getElementById('timestamp');
+            const timestampEnd = document.getElementById('timestamp-end');
             const volumeBtn = document.getElementById('volume-btn');
+            const volumeSlider = document.getElementById('volume-slider');
 
-            // Update progress bar and time
+            // Update progress slider and time
             video.addEventListener('timeupdate', function() {
                 const progress = (video.currentTime / video.duration) * 100;
-                progressFill.style.width = progress + '%';
+                progressSlider.value = progress;
+                
+                // Update the background gradient to show progress fill
+                progressSlider.style.background = `linear-gradient(to right, white 0%, white ${progress}%, rgba(255,255,255,0.3) ${progress}%)`;
                 
                 const currentTime = formatTime(video.currentTime);
                 const totalTime = formatTime(video.duration);
                 timestamp.textContent = `${currentTime} / ${totalTime}`;
+                timestampEnd.textContent = `${currentTime} / ${totalTime}`;
             });
 
             // Update play button
@@ -732,14 +899,29 @@
 
             // Update volume button
             video.addEventListener('volumechange', function() {
+                const svg = volumeBtn.querySelector('svg');
+                
                 if (video.muted || video.volume === 0) {
-                    volumeBtn.textContent = '🔇';
+                    // Muted icon
+                    svg.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
                 } else if (video.volume < 0.5) {
-                    volumeBtn.textContent = '🔉';
+                    // Low volume icon
+                    svg.innerHTML = '<path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/>';
                 } else {
-                    volumeBtn.textContent = '🔊';
+                    // High volume icon
+                    svg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
                 }
+
+                // Update volume slider
+                volumeSlider.value = video.volume;
             });
+        }
+
+        // Seek video using slider
+        function seekVideoSlider(value) {
+            const video = document.getElementById('modal-video');
+            const seekTime = (value / 100) * video.duration;
+            video.currentTime = seekTime;
         }
 
         // Toggle play/pause
@@ -752,21 +934,16 @@
             }
         }
 
-        // Seek video
-        function seekVideo(event) {
-            const video = document.getElementById('modal-video');
-            const progressBar = event.currentTarget;
-            const rect = progressBar.getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-            const width = rect.width;
-            const seekTime = (clickX / width) * video.duration;
-            video.currentTime = seekTime;
-        }
-
         // Toggle mute
         function toggleMute() {
             const video = document.getElementById('modal-video');
             video.muted = !video.muted;
+        }
+
+        // Set volume
+        function setVolume(volume) {
+            const video = document.getElementById('modal-video');
+            video.volume = volume;
         }
 
         // Toggle fullscreen
@@ -784,13 +961,35 @@
 
         // Navigation functions
         function previousVideo() {
-            // Implementation for previous video
-            console.log('Previous video');
+            if (currentVideoIndex > 0) {
+                currentVideoIndex--;
+                const video = videos[currentVideoIndex];
+                const modalVideo = document.getElementById('modal-video');
+                const playButton = document.getElementById('play-button');
+                
+                modalVideo.src = video.videoSrc;
+                modalVideo.load();
+                modalVideo.play();
+                
+                // Set up video event listeners
+                setupVideoControls(modalVideo, playButton);
+            }
         }
 
         function nextVideo() {
-            // Implementation for next video
-            console.log('Next video');
+            if (currentVideoIndex < videos.length - 1) {
+                currentVideoIndex++;
+                const video = videos[currentVideoIndex];
+                const modalVideo = document.getElementById('modal-video');
+                const playButton = document.getElementById('play-button');
+                
+                modalVideo.src = video.videoSrc;
+                modalVideo.load();
+                modalVideo.play();
+                
+                // Set up video event listeners
+                setupVideoControls(modalVideo, playButton);
+            }
         }
 
         // Format time helper
@@ -801,6 +1000,67 @@
             const secs = Math.floor(seconds % 60);
             return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
+
+        // Toggle options menu
+        function toggleOptionsMenu() {
+            const dropdown = document.getElementById('options-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Toggle speed menu
+        function toggleSpeedMenu() {
+            const speedOptions = document.getElementById('speed-options');
+            speedOptions.classList.toggle('active');
+        }
+
+        // Set playback speed
+        function setPlaybackSpeed(speed) {
+            const video = document.getElementById('modal-video');
+            const speedOptions = document.querySelectorAll('.speed-option');
+            
+            // Update video speed
+            video.playbackRate = speed;
+            
+            // Update active speed option
+            speedOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.textContent === speed + 'x') {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Close speed menu
+            document.getElementById('speed-options').classList.remove('active');
+        }
+
+        // Download video
+        function downloadVideo() {
+            const video = document.getElementById('modal-video');
+            const videoSrc = video.src;
+            
+            if (videoSrc) {
+                const link = document.createElement('a');
+                link.href = videoSrc;
+                link.download = 'video.mp4';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            
+            // Close options menu
+            document.getElementById('options-dropdown').classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const moreOptionsBtn = document.querySelector('.more-options-btn');
+            const dropdown = document.getElementById('options-dropdown');
+            
+            if (!moreOptionsBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+                document.getElementById('speed-options').classList.remove('active');
+            }
+        });
 
         // Close modal when clicking outside
         document.addEventListener('click', function(e) {
