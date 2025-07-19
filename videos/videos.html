@@ -263,10 +263,11 @@
 
         .video-modal-content {
             position: relative;
+            width: 100vw;
+            height: 100vh;
             background: #000;
             display: flex;
             flex-direction: column;
-            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -472,6 +473,7 @@
         /* Video Container */
         .video-container {
             position: relative;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -482,6 +484,8 @@
 
         .video-wrapper {
             position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -489,6 +493,11 @@
 
         .video-modal video {
             max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            min-width: 50vw;
+            min-height: 50vh;
             object-fit: contain;
         }
 
@@ -850,6 +859,11 @@
             
             // Set up video event listeners
             setupVideoControls(modalVideo, playButton);
+            
+            // Auto-play the video
+            modalVideo.play().catch(e => {
+                console.log('Auto-play prevented:', e);
+            });
         }
 
         // Function to close video modal
@@ -969,10 +983,14 @@
                 
                 modalVideo.src = video.videoSrc;
                 modalVideo.load();
-                modalVideo.play();
                 
                 // Set up video event listeners
                 setupVideoControls(modalVideo, playButton);
+                
+                // Auto-play the video
+                modalVideo.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
             }
         }
 
@@ -985,10 +1003,14 @@
                 
                 modalVideo.src = video.videoSrc;
                 modalVideo.load();
-                modalVideo.play();
                 
                 // Set up video event listeners
                 setupVideoControls(modalVideo, playButton);
+                
+                // Auto-play the video
+                modalVideo.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
             }
         }
 
