@@ -40,63 +40,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #2effb9;
         }
-    </style>
-</head>
-
-<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
-    <!-- Top Navigation -->
-    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
-        <div class="text-center">
-            <a href="../../index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
-            <div class="flex justify-center space-x-8 mb-4">
-                <a href="../../movies/movies.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
-                <a href="../../games/games.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
-                <a href="videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
-                <a href="../../about/about.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
-                <a href="mailto:singulariteyy@gmail.com" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
-            </div>
-            <div class="flex justify-center space-x-4">
-                <a href="https://www.tiktok.com/@singularitey?is_from_webapp=1&sender_device=pc" target="_blank">
-                    <img src="../../assets/icons/tiktok.png" alt="TikTok" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
-                </a>
-                <a href="https://instagram.com/your-instagram" target="_blank">
-                    <img src="../../assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
-                </a>
-                <a href="https://letterboxd.com/jwuan/" target="_blank">
-                    <img src="../../assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
-                </a>
-                <a href="https://music.apple.com/us/library/playlist/p.RB1A8MbsYvQYddz" target="_blank">
-                    <img src="../../assets/icons/Apple_Music_icon.svg" alt="Apple Music" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Videos Wing Content -->
-    <div class="mb-4 flex items-center">
-        <a href="javascript:history.back()" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">← BACK</a>
-    </div>
-    <style>
-        /* Add consistent sizing for video containers */
-        .video-card {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            overflow: hidden;
-        }
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
         
         /* Theme styles */
         :root {
@@ -194,8 +137,413 @@
         .theme-btn.dark {
             background-color: #121212;
         }
+
+        /* TikTok-style Video Grid */
+        .tiktok-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 9px;
+            padding: 0;
+            background: var(--bg-color);
+        }
+
+        .tiktok-video-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: #000;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .tiktok-video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .tiktok-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tiktok-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tiktok-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* TikTok-style play button - exact replica */
+        .tiktok-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 50px solid white;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .tiktok-video-card:hover .tiktok-play-btn {
+            opacity: 1;
+        }
+
+        /* Modal play button overlay - exact replica */
+        .modal-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 60px solid white;
+            border-top: 35px solid transparent;
+            border-bottom: 35px solid transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .modal-play-btn.active {
+            opacity: 1;
+        }
+
+        /* TikTok-style view count */
+        .tiktok-view-count {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        
+
+
+        /* Video modal - Retro VHS Style */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Top Header */
+        .video-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #000;
+        }
+
+        .close-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 16px;
+            background: #333;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar::placeholder {
+            color: #999;
+        }
+
+        .search-icon {
+            color: white;
+            font-size: 16px;
+        }
+
+        .more-options-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .more-options-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal video {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        /* Play Button */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid #000;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        .play-button.playing {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .timestamp {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 80px;
+        }
+
+        /* Right Side Controls */
+        .side-controls {
+            position: fixed;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2001;
+        }
+
+        .control-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-arrows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-arrows .control-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        /* Dark theme adjustments */
+        .theme-enabled .tiktok-video-card {
+            background: #000;
+        }
+
+        .theme-enabled .tiktok-view-count {
+            color: white;
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
-    
+</head>
+
+<body class="bg-cherry-purple font-cherry text-[9px] leading-[10px] uppercase text-black m-0">
+    <!-- Top Navigation -->
+    <div class="fixed top-0 left-0 right-0 bg-cherry-purple p-4 z-10">
+        <div class="text-center">
+            <a href="../../index.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300 text-2xl font-bold mb-4 block" style="font-family: Georgia, serif;">CHERRY PALACE</a>
+            <div class="flex justify-center space-x-8 mb-4">
+                <a href="../../movies/movies.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MOVIES</a>
+                <a href="../../games/games.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">GAMES</a>
+                <a href="videos.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">VIDEOS</a>
+                <a href="../../about/about.html" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ABOUT</a>
+                <a href="mailto:singulariteyy@gmail.com" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CONTACT</a>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.tiktok.com/@singularitey?is_from_webapp=1&sender_device=pc" target="_blank">
+                    <img src="../../assets/icons/tiktok.png" alt="TikTok" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://instagram.com/your-instagram" target="_blank">
+                    <img src="../../assets/icons/Instagram_icon.png" alt="Instagram" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://letterboxd.com/jwuan/" target="_blank">
+                    <img src="../../assets/icons/letterboxd-mac-icon.png" alt="Letterboxd" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+                <a href="https://music.apple.com/us/library/playlist/p.RB1A8MbsYvQYddz" target="_blank">
+                    <img src="../../assets/icons/Apple_Music_icon.svg" alt="Apple Music" class="w-6 h-6 hover:opacity-70 transition-opacity duration-300">
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Theme Switcher -->
     <div class="theme-switcher">
         <div class="theme-btn purple active" data-theme="default" title="Purple Theme"></div>
@@ -203,855 +551,290 @@
         <div class="theme-btn dark" data-theme="dark" title="Dark Theme"></div>
     </div>
     
-    <!-- Videos Grid -->
-    <div class="p-5 pt-[180px] w-[900px] mx-auto">
-        <div class="grid grid-cols-3 gap-4" id="videos-grid">
-            <!-- Static video elements to ensure they display properly -->
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#dexter" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/vids/dexter-1979 copy.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
+    <!-- Videos Wing Content -->
+    <div class="p-5 pt-[180px] max-w-7xl mx-auto">
+        <div class="mb-4 flex items-center">
+            <a href="javascript:history.back()" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">← BACK</a>
+        </div>
+        
+        
+        
+        <!-- TikTok-style Video Grid -->
+        <div class="tiktok-grid" id="tiktok-grid">
+            <!-- Video cards will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-content">
+            <!-- Header -->
+            <div class="video-header">
+                <button class="close-btn" onclick="closeVideoModal()">×</button>
+                <div class="search-container">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Find related content" style="background: none; border: none; color: white; flex: 1; outline: none;">
                     </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#dexter" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">DEXTER</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">12/10/23</div>
                 </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
+                <button class="more-options-btn">⋮</button>
             </div>
             
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#damm" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/vids/damm.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
+            <!-- Video Container -->
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="modal-video" onclick="togglePlayPause()">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <!-- Play Button -->
+                    <button class="play-button" id="play-button" onclick="togglePlayPause()"></button>
+                    
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-bar" onclick="seekVideo(event)">
+                            <div class="progress-fill" id="progress-fill"></div>
                         </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
+                        <div class="timestamp" id="timestamp">00:00 / 00:00</div>
                     </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#damm" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">DAMM</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">12/10/23</div>
                 </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
             </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#silent" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/vids/silent.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#silent" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">SILENT</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">12/10/23</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
+        </div>
+        
+        <!-- Side Controls - Floating outside modal -->
+        <div class="side-controls">
+            <div class="nav-arrows">
+                <button class="control-btn" onclick="previousVideo()">↑</button>
+                <button class="control-btn" onclick="nextVideo()">↓</button>
             </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#batfella" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_batfella1_7423514289111223598.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#batfella" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">BATFELLA</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#iblamevoidd" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_iblamevoidd_7380510047962451231.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#iblamevoidd" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">IBLAMEVOIDD</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#madaora" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_madaora_7479026862530841862.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#madaora" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">MADAORA</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#anakin" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_anakin.aesw_7494592838085266710.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#anakin" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ANAKIN</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#blackburne" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok___blackburne___7495284421956816158.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#blackburne" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">BLACKBURNE</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#wockz" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_58wockz_7460587750991908139.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#wockz" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">58WOCKZ</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#nnnnoiz" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_nnnnoiz_7495110744552426798.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#nnnnoiz" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">NNNNOIZ</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#hudsonfilms" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_hudsonfilms___7461200649078803719.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#hudsonfilms" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">HUDSONFILMS</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#le181164" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_le181164_7488048975891664170.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#le181164" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">LE181164</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#oldfriends" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_oldfriendsbookends_7475726188523113759.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#oldfriends" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">OLDFRIENDS</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#saifnyb" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_saifnyb_7489150649305681182.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#saifnyb" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">SAIFNYB</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#soldierboyyysss" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_soldierboyyysss_7479183062778039558.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#soldierboyyysss" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">SOLDIERBOYYYSSS</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#userimnotgod" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_userimnotgod_7282964477832613126.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#userimnotgod" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">USERIMNOTGOD</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#ratboyao" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_ratboyao_7496511266337377582.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#ratboyao" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">RATBOYAO</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#berkin" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_berkin.ae_7498302256891104535.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#berkin" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">BERKIN</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#chapel" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_chapel_of_ghouls_7497293133407964438.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#chapel" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">CHAPEL OF GHOULS</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#darkvoid" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_darkvoidedits_7495546331264453930.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#darkvoid" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">DARK VOID</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#eliussy" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_eliussy.aep_7497637236956106007.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#eliussy" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ELIUSSY</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#foles" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_foles.ae_7497754388677528854.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#foles" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">FOLES</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#jhonypeuz" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_jhonypeuz_7495053658518752518.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#jhonypeuz" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">JHONY PEUZ</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#rrichle" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_rrichle_7497719646825549102.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#rrichle" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">RRICHLE</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#st3za" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_st3za_7498105094659902763.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#st3za" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ST3ZA</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#thesverse" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_thesverse_7496209411074051350.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#thesverse" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">THESVERSE</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#xvillain" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_xvillain_7498104265328676104.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#xvillain" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">XVILLAIN</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#nrmkhw" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_nrmkhw_7304568860856814853.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#nrmkhw" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">NRMKHW</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#kxdolliest" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_kxdolliest_7429282176958614827.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#kxdolliest" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">KXDOLLIEST</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
-            
-            <div class="overflow-hidden group video-card">
-                <a href="../image.html#anakin2" class="block bg-black">
-                    <div class="video-container rounded-t-lg">
-                        <video preload="metadata" muted playsinline>
-                            <source src="../assets/videos/tik toks/tiktok_anakin.aesw_7495100986004917526.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                            <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">MP4</div>
-                    </div>
-                </a>
-                <div class="p-2 bg-cherry-purple">
-                    <div class="text-center py-[5px]">
-                        <a href="../image.html#anakin2" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">ANAKIN 2</a>
-                    </div>
-                    <div class="text-center text-[8px] text-gray-600">04/29/25</div>
-                </div>
-                <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
-            </div>
+            <button class="control-btn" onclick="toggleMute()" id="volume-btn">🔊</button>
+            <button class="control-btn" onclick="toggleFullscreen()">⛶</button>
         </div>
     </div>
 
     <script>
-        // Force browser to reload the page to clear any caching issues
-        if (performance.navigation.type === 1) {
-            console.log('Page was reloaded');
-        }
-        
+        // Sample video data with actual video files
         const videos = [
-            // Original videos only - TikTok videos are now added directly in the HTML
             {
-                image: '../assets/videos/vids/dexter-1979 copy.mp4',
-                date: '12/10/23',
-                permalink: 'dexter',
-                title: 'DEXTER'
+                id: 1,
+                title: "Your room is your sanctuary",
+                videoSrc: "../../assets/videos/tik toks/tiktok___blackburne___7495284421956816158.mp4",
+                duration: "2:34"
             },
             {
-                image: '../assets/videos/vids/damm.mp4',
-                date: '12/10/23',
-                permalink: 'damm',
-                title: 'DAMM'
+                id: 2,
+                title: "Artistic vibes with headphones",
+                videoSrc: "../../assets/videos/tik toks/tiktok_58wockz_7460587750991908139.mp4",
+                duration: "1:45"
             },
             {
-                image: '../assets/videos/vids/silent.mp4',
-                date: '12/10/23',
-                permalink: 'silent',
-                title: 'SILENT'
-            }
+                id: 3,
+                title: "Jake Gyllenhaal moment",
+                videoSrc: "../../assets/videos/tik toks/tiktok_anakin.aesw_7494592838085266710.mp4",
+                duration: "3:12"
+            },
+            {
+                id: 4,
+                title: "Does anyone know a place like this that exists irl",
+                videoSrc: "../../assets/videos/tik toks/tiktok_anakin.aesw_7495100986004917526.mp4",
+                duration: "4:20"
+            },
+            {
+                id: 5,
+                title: "Digital glitch aesthetic",
+                videoSrc: "../../assets/videos/tik toks/tiktok_batfella1_7423514289111223598.mp4",
+                duration: "1:58"
+            },
+            {
+                id: 6,
+                title: "Blue eyes intensity",
+                videoSrc: "../../assets/videos/tik toks/tiktok_berkin.ae_7498302256891104535.mp4",
+                duration: "2:15"
+            }, 
         ];
 
-        function createVideo(video) {
+        // Function to create TikTok-style video card
+        function createTikTokVideoCard(video) {
             return `
-                <div class="overflow-hidden group video-card">
-                    <a href="../image.html#${video.permalink}" class="block bg-black">
-                        <div class="video-container rounded-t-lg">
-                            <video preload="metadata" muted playsinline>
-                                <source src="${video.image}" type="video/mp4">
-                            </video>
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                                <div class="transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                                    <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="absolute bottom-2 right-2 bg-black/50 text-white text-[8px] px-2 py-1 rounded">
-                                MP4
-                            </div>
-                        </div>
-                    </a>
-                    <div class="p-2 bg-cherry-purple">
-                        <div class="text-center py-[5px]">
-                            <a href="../image.html#${video.permalink}" class="text-black no-underline hover:text-cherry-hover transition-colors duration-300">
-                                ${video.title}
-                            </a>
-                        </div>
-                        <div class="text-center text-[8px] text-gray-600">
-                            ${video.date}
-                        </div>
-                        
+                <div class="tiktok-video-card" onclick="playVideo(${video.id})">
+                    <div class="tiktok-thumbnail">
+                        <video muted preload="metadata" poster="">
+                            <source src="${video.videoSrc}" type="video/mp4">
+                        </video>
+                        <div class="tiktok-play-btn"></div>
                     </div>
-                    <hr class="border-dotted border-cherry-accent w-full border-t-[0.2px] my-0">
                 </div>
             `;
         }
 
-        function loadVideos() {
-            const videosContainer = document.getElementById('videos-grid');
-            // Keep the static videos and add the rest
-            const staticVideos = videosContainer.innerHTML;
-            
-            // Start with the 4th video (index 3) since we've already added 3 static ones
-            const remainingVideos = videos.slice(3);
-            
-            // Add each remaining video to the container
-            remainingVideos.forEach(video => {
-                videosContainer.innerHTML += createVideo(video);
-            });
-
-            // Set the first frame of each video as the thumbnail
-            document.querySelectorAll('video').forEach(video => {
-                video.addEventListener('loadedmetadata', function () {
-                    video.currentTime = 0.1; // Set to a small time to get the first frame
-                });
-            });
-            
-            console.log('Loaded videos:', videos.length, 'Static videos: 3, Dynamic videos:', remainingVideos.length);
+        // Function to populate TikTok grid
+        function populateTikTokGrid() {
+            const grid = document.getElementById('tiktok-grid');
+            grid.innerHTML = videos.map(video => createTikTokVideoCard(video)).join('');
         }
 
-        // Load videos when the page loads
-        window.onload = function() {
-            loadVideos();
-            initThemeSwitcher();
-        };
-        
+        // Function to play video in modal
+        function playVideo(videoId) {
+            const video = videos.find(v => v.id === videoId);
+            if (!video) return;
+
+            const modal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const playButton = document.getElementById('play-button');
+            
+            modalVideo.src = video.videoSrc;
+            modalVideo.load();
+            
+            modal.classList.add('active');
+            
+            // Set up video event listeners
+            setupVideoControls(modalVideo, playButton);
+        }
+
+        // Function to close video modal
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            
+            modalVideo.pause();
+            modalVideo.src = '';
+            modal.classList.remove('active');
+        }
+
+        // Setup video controls
+        function setupVideoControls(video, playButton) {
+            const progressFill = document.getElementById('progress-fill');
+            const timestamp = document.getElementById('timestamp');
+            const volumeBtn = document.getElementById('volume-btn');
+
+            // Update progress bar and time
+            video.addEventListener('timeupdate', function() {
+                const progress = (video.currentTime / video.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                const currentTime = formatTime(video.currentTime);
+                const totalTime = formatTime(video.duration);
+                timestamp.textContent = `${currentTime} / ${totalTime}`;
+            });
+
+            // Update play button
+            video.addEventListener('play', function() {
+                playButton.classList.add('playing');
+            });
+
+            video.addEventListener('pause', function() {
+                playButton.classList.remove('playing');
+            });
+
+            video.addEventListener('ended', function() {
+                playButton.classList.remove('playing');
+            });
+
+            // Update volume button
+            video.addEventListener('volumechange', function() {
+                if (video.muted || video.volume === 0) {
+                    volumeBtn.textContent = '🔇';
+                } else if (video.volume < 0.5) {
+                    volumeBtn.textContent = '🔉';
+                } else {
+                    volumeBtn.textContent = '🔊';
+                }
+            });
+        }
+
+        // Toggle play/pause
+        function togglePlayPause() {
+            const video = document.getElementById('modal-video');
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // Seek video
+        function seekVideo(event) {
+            const video = document.getElementById('modal-video');
+            const progressBar = event.currentTarget;
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const seekTime = (clickX / width) * video.duration;
+            video.currentTime = seekTime;
+        }
+
+        // Toggle mute
+        function toggleMute() {
+            const video = document.getElementById('modal-video');
+            video.muted = !video.muted;
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            const modalContent = document.querySelector('.video-modal-content');
+            
+            if (!document.fullscreenElement) {
+                modalContent.requestFullscreen().catch(err => {
+                    console.log('Error attempting to enable fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Navigation functions
+        function previousVideo() {
+            // Implementation for previous video
+            console.log('Previous video');
+        }
+
+        function nextVideo() {
+            // Implementation for next video
+            console.log('Next video');
+        }
+
+        // Format time helper
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '00:00';
+            
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('video-modal');
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // Filter functionality
+        function initFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Add your filter logic here
+                    const filter = this.textContent.toLowerCase();
+                    console.log(`Filtering by: ${filter}`);
+                });
+            });
+        }
+
         // Theme switcher functionality
         function initThemeSwitcher() {
             const themeButtons = document.querySelectorAll('.theme-btn');
@@ -1101,5 +884,16 @@
                 body.setAttribute('data-theme', theme);
             }
         }
+        
+        // Initialize everything when page loads
+        window.onload = function() {
+            initThemeSwitcher();
+            populateTikTokGrid();
+            initFilters();
+        };
     </script>
 </body>
+</html>
+
+
+
