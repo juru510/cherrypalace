@@ -48,6 +48,10 @@
             --accent-color: #B55FFF;
             --hover-color: #2effb9;
             --card-bg: #d4a3ff;
+            --bg-color-rgb: 212, 163, 255;
+            --text-color-rgb: 0, 0, 0;
+            --hover-color-rgb: 46, 255, 185;
+            --card-bg-rgb: 212, 163, 255;
         }
         
         /* Light theme */
@@ -57,6 +61,10 @@
             --accent-color: #cccccc;
             --hover-color: #666666;
             --card-bg: #f5f5f5;
+            --bg-color-rgb: 255, 255, 255;
+            --text-color-rgb: 51, 51, 51;
+            --hover-color-rgb: 102, 102, 102;
+            --card-bg-rgb: 245, 245, 245;
         }
         
         /* Dark theme */
@@ -66,6 +74,10 @@
             --accent-color: #333333;
             --hover-color: #B55FFF;
             --card-bg: #1e1e1e;
+            --bg-color-rgb: 18, 18, 18;
+            --text-color-rgb: 255, 255, 255;
+            --hover-color-rgb: 181, 95, 255;
+            --card-bg-rgb: 30, 30, 30;
         }
         
         body.theme-enabled {
@@ -242,7 +254,7 @@
         
 
 
-        /* Video modal - Retro VHS Style */
+        /* Video modal - Theme-aware styling */
         .video-modal {
             position: fixed;
             top: 0;
@@ -255,6 +267,11 @@
             justify-content: center;
             z-index: 2000;
             font-family: 'Arial', sans-serif;
+        }
+
+        /* Theme-aware modal styling */
+        .theme-enabled .video-modal {
+            background: var(--bg-color);
         }
 
         .video-modal.active {
@@ -274,6 +291,12 @@
             border-radius: 8px;
         }
 
+        /* Theme-aware modal content */
+        .theme-enabled .video-modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+        }
+
         /* Top Header */
         .video-header {
             display: flex;
@@ -281,6 +304,12 @@
             justify-content: space-between;
             padding: 20px;
             background: #000;
+        }
+
+        /* Theme-aware header */
+        .theme-enabled .video-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--accent-color);
         }
 
         .close-btn {
@@ -302,6 +331,16 @@
             background: rgba(255,255,255,0.2);
         }
 
+        /* Theme-aware close button */
+        .theme-enabled .close-btn {
+            background: rgba(var(--text-color-rgb), 0.1);
+            color: var(--text-color);
+        }
+
+        .theme-enabled .close-btn:hover {
+            background: rgba(var(--text-color-rgb), 0.2);
+        }
+
         .more-options-btn {
             background: rgba(255,255,255,0.1);
             border: none;
@@ -321,6 +360,16 @@
             background: rgba(255,255,255,0.2);
         }
 
+        /* Theme-aware options button */
+        .theme-enabled .more-options-btn {
+            background: rgba(var(--text-color-rgb), 0.1);
+            color: var(--text-color);
+        }
+
+        .theme-enabled .more-options-btn:hover {
+            background: rgba(var(--text-color-rgb), 0.2);
+        }
+
         .options-dropdown {
             position: absolute;
             top: 70px;
@@ -333,6 +382,12 @@
             z-index: 15;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Theme-aware dropdown */
+        .theme-enabled .options-dropdown {
+            background: rgba(var(--bg-color-rgb), 0.95);
+            border: 1px solid var(--accent-color);
         }
 
         .options-dropdown.active {
@@ -354,12 +409,26 @@
             background: rgba(255,255,255,0.1);
         }
 
+        /* Theme-aware option items */
+        .theme-enabled .option-item {
+            color: var(--text-color);
+        }
+
+        .theme-enabled .option-item:hover {
+            background: rgba(var(--hover-color-rgb), 0.2);
+        }
+
         .speed-options {
             display: none;
             flex-direction: column;
             background: rgba(0,0,0,0.8);
             border-radius: 4px;
             margin-top: 4px;
+        }
+
+        /* Theme-aware speed options */
+        .theme-enabled .speed-options {
+            background: rgba(var(--card-bg-rgb), 0.9);
         }
 
         .speed-options.active {
@@ -383,6 +452,19 @@
             font-weight: 600;
         }
 
+        /* Theme-aware speed options */
+        .theme-enabled .speed-option {
+            color: var(--text-color);
+        }
+
+        .theme-enabled .speed-option:hover {
+            background: rgba(var(--hover-color-rgb), 0.2);
+        }
+
+        .theme-enabled .speed-option.active {
+            color: var(--hover-color);
+        }
+
         /* Sliders */
         .slider-container {
             position: relative;
@@ -404,6 +486,15 @@
 
         .slider:hover {
             background: rgba(255,255,255,0.5);
+        }
+
+        /* Theme-aware sliders */
+        .theme-enabled .slider {
+            background: rgba(var(--text-color-rgb), 0.3);
+        }
+
+        .theme-enabled .slider:hover {
+            background: rgba(var(--text-color-rgb), 0.5);
         }
 
         .slider::-webkit-slider-thumb {
@@ -435,6 +526,15 @@
             transform: scale(1.2);
         }
 
+        /* Theme-aware slider thumbs */
+        .theme-enabled .slider::-webkit-slider-thumb {
+            background: var(--text-color);
+        }
+
+        .theme-enabled .slider::-moz-range-thumb {
+            background: var(--text-color);
+        }
+
         /* Volume slider specific */
         .volume-slider {
             width: 80px;
@@ -450,9 +550,14 @@
         .video-progress-slider {
             flex: 1;
             margin: 0 15px;
-            background: linear-gradient(to right, white 0%, white 0%, rgba(255,255,255,0.3) 0%);
+            background: linear-gradient(to right, #2effb9 0%, #2effb9 0%, rgba(255,255,255,0.3) 0%);
             background-size: 100% 100%;
             background-repeat: no-repeat;
+        }
+
+        /* Theme-aware progress slider */
+        .theme-enabled .video-progress-slider {
+            background: linear-gradient(to right, var(--hover-color) 0%, var(--hover-color) 0%, rgba(var(--text-color-rgb), 0.3) 0%);
         }
 
         .video-progress-slider::-webkit-slider-thumb {
@@ -483,6 +588,11 @@
             background: #000;
             overflow: hidden;
             padding: 20px;
+        }
+
+        /* Theme-aware video container */
+        .theme-enabled .video-container {
+            background: var(--card-bg);
         }
 
         .video-wrapper {
@@ -576,6 +686,11 @@
             min-width: 80px;
         }
 
+        /* Theme-aware timestamp */
+        .theme-enabled .timestamp {
+            color: var(--text-color);
+        }
+
         /* Right Side Controls */
         .side-controls {
             position: fixed;
@@ -601,6 +716,12 @@
             justify-content: center;
             font-size: 18px;
             transition: background 0.3s ease;
+        }
+
+        /* Theme-aware control buttons */
+        .theme-enabled .control-btn {
+            background: rgba(var(--text-color-rgb), 0.1);
+            color: var(--text-color);
         }
 
         .control-btn:hover {
