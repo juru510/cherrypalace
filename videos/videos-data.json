@@ -1,0 +1,101 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": ".alt.87 7530438665546288397",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_.alt.87_7530438665546288397.mp4",
+      "duration": "4:03",
+      "category": "aesthetic",
+      "date": "2025-07-19"
+    },
+    {
+      "id": 2,
+      "title": "Blueribbonsparkler 7511721085952478495",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_blueribbonsparkler_7511721085952478495.mp4",
+      "duration": "1:22",
+      "category": "aesthetic",
+      "date": "2024-08-30"
+    },
+    {
+      "id": 3,
+      "title": "Cheristical 7513961171569921323",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_cheristical_7513961171569921323.mp4",
+      "duration": "3:00",
+      "category": "nature",
+      "date": "2025-06-21"
+    },
+    {
+      "id": 4,
+      "title": "Jennys.theme 7516600011438771498",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_jennys.theme_7516600011438771498.mp4",
+      "duration": "1:35",
+      "category": "anime",
+      "date": "2025-01-25"
+    },
+    {
+      "id": 5,
+      "title": "Philsosophy4 7529976740974693654",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_philsosophy4_7529976740974693654.mp4",
+      "duration": "2:23",
+      "category": "glitch",
+      "date": "2025-02-25"
+    },
+    {
+      "id": 6,
+      "title": "Spideeerwhat 7499102896542190870",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_spideeerwhat_7499102896542190870.mp4",
+      "duration": "3:40",
+      "category": "cinema",
+      "date": "2024-09-01"
+    },
+    {
+      "id": 7,
+      "title": "Umbrllacorp 7526568710807489805",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_umbrllacorp_7526568710807489805.mp4",
+      "duration": "2:06",
+      "category": "aesthetic",
+      "date": "2024-09-08"
+    },
+    {
+      "id": 8,
+      "title": "Vmigiii 7517691097749998870 Copy",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_vmigiii_7517691097749998870 copy.mp4",
+      "duration": "4:48",
+      "category": "gaming",
+      "date": "2025-04-13"
+    },
+    {
+      "id": 9,
+      "title": "Wolverinefg 7528550897085893902 Copy",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_wolverinefg_7528550897085893902 copy.mp4",
+      "duration": "4:48",
+      "category": "urban",
+      "date": "2024-11-06"
+    },
+    {
+      "id": 10,
+      "title": "Wpantony 7452578379682811179",
+      "videoSrc": "../../assets/videos/tik toks/tiktok_wpantony_7452578379682811179.mp4",
+      "duration": "3:19",
+      "category": "vaporwave",
+      "date": "2025-01-04"
+    }
+  ],
+  "categories": [
+    "all",
+    "aesthetic",
+    "music",
+    "cinema",
+    "glitch",
+    "portrait",
+    "vaporwave",
+    "cyberpunk",
+    "retro",
+    "experimental",
+    "anime",
+    "gaming",
+    "nature",
+    "urban",
+    "abstract"
+  ]
+}

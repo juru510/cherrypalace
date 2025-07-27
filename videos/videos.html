@@ -810,9 +810,30 @@
         
         
         
+        <!-- Video Count -->
+        <div class="mb-4 text-sm text-black">
+            <span id="video-count">Loading videos...</span>
+        </div>
+
         <!-- TikTok-style Video Grid -->
         <div class="tiktok-grid" id="tiktok-grid">
             <!-- Video cards will be populated by JavaScript -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="hidden flex justify-center items-center py-8">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-8" id="load-more-container">
+            <button 
+                id="load-more-btn" 
+                onclick="loadMoreVideos()"
+                class="px-6 py-3 bg-cherry-accent text-white rounded-lg hover:bg-cherry-hover transition-colors duration-300"
+            >
+                Load More Videos
+            </button>
         </div>
     </div>
 
@@ -900,47 +921,51 @@
     </div>
 
     <script>
-        // Sample video data with actual video files
-        const videos = [
-            {
-                id: 1,
-                title: "Your room is your sanctuary",
-                videoSrc: "../../assets/videos/tik toks/tiktok___blackburne___7495284421956816158.mp4",
-                duration: "2:34"
-            },
-            {
-                id: 2,
-                title: "Artistic vibes with headphones",
-                videoSrc: "../../assets/videos/tik toks/tiktok_58wockz_7460587750991908139.mp4",
-                duration: "1:45"
-            },
-            {
-                id: 3,
-                title: "Jake Gyllenhaal moment",
-                videoSrc: "../../assets/videos/tik toks/tiktok_anakin.aesw_7494592838085266710.mp4",
-                duration: "3:12"
-            },
-            {
-                id: 4,
-                title: "Does anyone know a place like this that exists irl",
-                videoSrc: "../../assets/videos/tik toks/tiktok_anakin.aesw_7495100986004917526.mp4",
-                duration: "4:20"
-            },
-            {
-                id: 5,
-                title: "Digital glitch aesthetic",
-                videoSrc: "../../assets/videos/tik toks/tiktok_batfella1_7423514289111223598.mp4",
-                duration: "1:58"
-            },
-            {
-                id: 6,
-                title: "Blue eyes intensity",
-                videoSrc: "../../assets/videos/tik toks/tiktok_berkin.ae_7498302256891104535.mp4",
-                duration: "2:15"
-            }, 
-        ];
-
+        // Global variables
+        let videos = [];
+        let filteredVideos = [];
         let currentVideoIndex = 0;
+        let currentPage = 1;
+        const videosPerPage = 50; // Load 50 videos at a time for better performance
+        let currentCategory = 'all';
+        let isLoading = false;
+
+        // Load video data from JSON file
+        async function loadVideoData() {
+            try {
+                console.log('🔄 Loading video data...');
+                const response = await fetch('videos-data.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                videos = data.videos;
+                filteredVideos = [...videos];
+                
+                // Initialize the grid
+                populateTikTokGrid();
+                
+                console.log(`✅ Loaded ${videos.length} videos successfully`);
+                
+            } catch (error) {
+                console.error('❌ Error loading video data:', error);
+                console.log('💡 Make sure you\'re running this through a web server (not opening the file directly)');
+                console.log('🌐 Try: http://localhost:8000/videos/videos.html');
+                
+                // Show error message to user
+                const grid = document.getElementById('tiktok-grid');
+                grid.innerHTML = `
+                    <div style="text-align: center; padding: 50px; color: #666;">
+                        <h3>⚠️ Error Loading Videos</h3>
+                        <p>Please open this page through a web server:</p>
+                        <p><strong>http://localhost:8000/videos/videos.html</strong></p>
+                        <p>Or run: <code>python3 -m http.server 8000</code> in the project directory</p>
+                    </div>
+                `;
+            }
+        }
 
         // Function to create TikTok-style video card
         function createTikTokVideoCard(video) {
@@ -956,10 +981,66 @@
             `;
         }
 
-        // Function to populate TikTok grid
+        // Function to populate TikTok grid with pagination
         function populateTikTokGrid() {
             const grid = document.getElementById('tiktok-grid');
-            grid.innerHTML = videos.map(video => createTikTokVideoCard(video)).join('');
+            const startIndex = (currentPage - 1) * videosPerPage;
+            const endIndex = startIndex + videosPerPage;
+            const videosToShow = filteredVideos.slice(startIndex, endIndex);
+            
+            if (currentPage === 1) {
+                grid.innerHTML = videosToShow.map(video => createTikTokVideoCard(video)).join('');
+            } else {
+                grid.innerHTML += videosToShow.map(video => createTikTokVideoCard(video)).join('');
+            }
+            
+            updateVideoCount();
+            updateLoadMoreButton();
+        }
+
+
+
+        // Load more videos
+        function loadMoreVideos() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const originalText = loadMoreBtn.textContent;
+            loadMoreBtn.textContent = 'Loading...';
+            loadMoreBtn.disabled = true;
+            
+            // Simulate loading delay for better UX
+            setTimeout(() => {
+                currentPage++;
+                populateTikTokGrid();
+                
+                isLoading = false;
+                loadMoreBtn.textContent = originalText;
+                loadMoreBtn.disabled = false;
+            }, 500);
+        }
+
+        // Update video count display
+        function updateVideoCount() {
+            const countElement = document.getElementById('video-count');
+            const totalVideos = filteredVideos.length;
+            const shownVideos = Math.min(currentPage * videosPerPage, totalVideos);
+            
+            countElement.textContent = `Showing ${shownVideos} of ${totalVideos} videos`;
+        }
+
+        // Update load more button visibility
+        function updateLoadMoreButton() {
+            const loadMoreContainer = document.getElementById('load-more-container');
+            const totalVideos = filteredVideos.length;
+            const shownVideos = currentPage * videosPerPage;
+            
+            if (shownVideos >= totalVideos) {
+                loadMoreContainer.style.display = 'none';
+            } else {
+                loadMoreContainer.style.display = 'block';
+            }
         }
 
         // Function to play video in modal
@@ -1220,23 +1301,7 @@
             }
         });
 
-        // Filter functionality
-        function initFilters() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Add your filter logic here
-                    const filter = this.textContent.toLowerCase();
-                    console.log(`Filtering by: ${filter}`);
-                });
-            });
-        }
+
 
         // Theme switcher functionality
         function initThemeSwitcher() {
@@ -1291,8 +1356,7 @@
         // Initialize everything when page loads
         window.onload = function() {
             initThemeSwitcher();
-            populateTikTokGrid();
-            initFilters();
+            loadVideoData();
         };
     </script>
 </body>
