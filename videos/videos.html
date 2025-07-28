@@ -195,25 +195,31 @@
             object-fit: cover;
         }
 
-        /* TikTok-style play button - exact replica */
-        .tiktok-play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-left: 50px solid white;
-            border-top: 30px solid transparent;
-            border-bottom: 30px solid transparent;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 5;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+
+
+        /* Hover Preview Styles */
+        .hover-preview-video {
+            transition: all 0.3s ease;
         }
 
-        .tiktok-video-card:hover .tiktok-play-btn {
-            opacity: 1;
+
+
+        .tiktok-video-card:hover .hover-preview-video {
+            transform: scale(1.02);
+        }
+
+
+
+        /* Smooth preview transitions */
+        .hover-preview-video {
+            will-change: transform;
+        }
+
+
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         /* Modal play button overlay - exact replica */
@@ -971,12 +977,11 @@
         // Function to create TikTok-style video card
         function createTikTokVideoCard(video) {
             return `
-                <div class="tiktok-video-card" onclick="playVideo(${video.id})">
+                <div class="tiktok-video-card" onclick="playVideo(${video.id})" data-video-id="${video.id}">
                     <div class="tiktok-thumbnail">
-                        <video muted preload="metadata" poster="">
+                        <video muted preload="metadata" poster="" class="hover-preview-video">
                             <source src="${video.videoSrc}" type="video/mp4">
                         </video>
-                        <div class="tiktok-play-btn"></div>
                     </div>
                 </div>
             `;
@@ -995,8 +1000,62 @@
                 grid.innerHTML += videosToShow.map(video => createTikTokVideoCard(video)).join('');
             }
             
+            // Set up hover preview functionality for new cards
+            setupHoverPreviews();
+            
             updateVideoCount();
             updateLoadMoreButton();
+        }
+
+        // Setup hover preview functionality
+        function setupHoverPreviews() {
+            const videoCards = document.querySelectorAll('.tiktok-video-card');
+            
+            videoCards.forEach(card => {
+                const video = card.querySelector('.hover-preview-video');
+
+                // Mouse enter - start preview immediately
+                card.addEventListener('mouseenter', () => {
+                    if (!card.classList.contains('preview-playing')) {
+                        startPreview(video, card);
+                    }
+                });
+
+                // Mouse leave - stop preview
+                card.addEventListener('mouseleave', () => {
+                    if (card.classList.contains('preview-playing')) {
+                        stopPreview(video, card);
+                    }
+                });
+            });
+        }
+
+        // Start video preview
+        function startPreview(video, card) {
+            if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+                card.classList.add('preview-loading');
+                video.currentTime = 0; // Start from beginning
+                video.play().then(() => {
+                    card.classList.remove('preview-loading');
+                    card.classList.add('preview-playing');
+                    
+                    // Let the video play to the end naturally
+                    video.addEventListener('ended', () => {
+                        if (card.classList.contains('preview-playing')) {
+                            stopPreview(video, card);
+                        }
+                    }, { once: true });
+                }).catch(e => {
+                    console.log('Preview play failed:', e);
+                    card.classList.remove('preview-loading');
+                });
+            }
+        }
+
+        // Stop video preview
+        function stopPreview(video, card) {
+            video.pause();
+            card.classList.remove('preview-playing', 'preview-loading');
         }
 
 
